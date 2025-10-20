@@ -1,0 +1,5 @@
+{:paths ["src" "resources"]
+ :deps {no.cjohansen/powerpack {:git/url "git@github.com:schneiderlin/powerpack.git"
+                                :git/sha "24a25e4d9749efe4e3a645a49635938f6b5ffccf"}}
+ :aliases {:dev {:extra-paths ["dev"]}
+           :build {:exec-fn powerblog.export/export!}}}

@@ -1,0 +1,70 @@
+(ns powerblog.core
+  (:require
+   [datomic.api :as d]
+   [powerpack.markdown :as md]))
+
+(defn get-page-kind [file-name]
+  (cond
+    (re-find #"^blog-posts/" file-name)
+    :page.kind/blog-post
+
+    (re-find #"^index\.md" file-name)
+    :page.kind/frontpage
+
+    (re-find #"\.md$" file-name)
+    :page.kind/article))
+
+(defn create-tx [file-name txes]
+  (let [kind (get-page-kind file-name)]
+    (for [tx txes]
+      (cond-> tx
+        (and (:page/uri tx) kind)
+        (assoc :page/kind kind)))))
+
+(defn get-blog-posts [db]
+  (->> (d/q '[:find [?e ...]
+              :where
+              [?e :blog-post/author]]
+            db)
+       (map #(d/entity db %))))
+
+(defn layout [{:keys [title]} & content]
+  [:html
+   [:head
+    (when title [:title title])]
+   [:body
+    content]])
+
+(def header
+  [:header [:a {:href "/"} "Powerblog"]])
+
+(defn render-frontpage [context page]
+  (layout {:title "The Powerblog1"}
+          (md/render-html (:page/body page))
+          [:h2 "Blog posts"]
+          [:ul
+           (for [blog-post (get-blog-posts (:app/db context))]
+             [:li [:a {:href (:page/uri blog-post)} (:page/title blog-post)]])]))
+
+(defn render-article [context page]
+  (layout {}
+          header
+          (md/render-html (:page/body page))))
+
+(defn render-blog-post [context page]
+  (render-article context page))
+
+(defn render-page [context page]
+  (case (:page/kind page)
+    :page.kind/frontpage (render-frontpage context page)
+    :page.kind/blog-post (render-blog-post context page)
+    :page.kind/article (render-article context page)))
+
+
+(def config
+  {:site/title "The Powerblog"
+   :datomic/schema-file "resources/schema.edn" 
+   :powerpack/port 8000
+   :powerpack/log-level :debug
+   :powerpack/render-page #'render-page
+   :powerpack/create-ingest-tx #'create-tx})
