@@ -1,6 +1,6 @@
 :page/title On the wonders of climbing
 :blog-post/tags [:climbing :nature]
-:blog-post/author {:person/id :christian}
+:blog-post/author {:person/id :jan}
 :page/body
 
 # On the wonders of climbing
