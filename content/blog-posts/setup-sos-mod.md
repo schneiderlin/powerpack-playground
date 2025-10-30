@@ -1,3 +1,8 @@
+:page/title Songs of syx MOD 环境搭建
+:blog-post/tags [:songs-of-syx]
+:blog-post/author {:person/id :jan}
+:page/body
+
 songs of syx 怎么开始 mod
 
 https://github.com/4rg0n/songs-of-syx-mod-example 这里面有详细的例子讲怎么 setup. 我这里在他的基础上强调和补充一些信息. JDK 版本 readme 里面说要 1.8, 还没试过其他版本, 理论上更新版本是可以的. 
@@ -32,15 +37,15 @@ public default void initBeforeGameInited()
 源码里面的 Game 一般指的是某个存档, 启动起动器, 还有主页面是不会触发这个函数调用的.
 
 ```java
-	public interface SCRIPT_INSTANCE {
-		
-		/**
-		 * Called after each tick. A tick is an update of the game. the game is typically
-		 * updated 60 times per second. Check your conditions here, and act on them. 
-		 * @param ds - how many seconds of in-game time that has passed since the previous update.
-		 */
-		abstract void update(double ds);
-    }
+public interface SCRIPT_INSTANCE {
+	
+	/**
+	 * Called after each tick. A tick is an update of the game. the game is typically
+	 * updated 60 times per second. Check your conditions here, and act on them. 
+	 * @param ds - how many seconds of in-game time that has passed since the previous update.
+	 */
+	abstract void update(double ds);
+}
 ```
 这个 update 比较关键, 文档里面也说了, 这是每个 tick 执行的, 大约是每秒 60 次. 就算游戏内时间是暂停的状态, 也会不断的调用, 在这种情况下, ds 就是 0.
 
