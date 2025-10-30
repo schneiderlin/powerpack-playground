@@ -3,6 +3,13 @@
    [datomic.api :as d]
    [powerpack.markdown :as md]))
 
+
+(comment
+  (require '[powerpack.dev :as dev])
+  (def app (dev/get-app))
+  (def db (d/db (:datomic/conn app)))
+  :rcf)
+
 (defn get-page-kind [file-name]
   (cond
     (re-find #"^blog-posts/" file-name)
@@ -28,6 +35,18 @@
             db)
        (map #(d/entity db %))))
 
+(defn get-posts-by-tag [db tag]
+  (->> (d/q '[:find [?e ...]
+              :in $ ?tag
+              :where
+              [?e :blog-post/tags ?tag]]
+            db tag)
+       (map #(d/entity db %))))
+
+(comment
+  (get-posts-by-tag db :clojure) 
+  :rcf)
+
 (defn layout [{:keys [title]} & content]
   [:html
    [:head
@@ -39,12 +58,18 @@
   [:header [:a {:href "/"} "Powerblog"]])
 
 (defn render-frontpage [context page]
-  (layout {:title "The Powerblog1"}
-          (md/render-html (:page/body page))
-          [:h2 "Blog posts"]
-          [:ul
-           (for [blog-post (get-blog-posts (:app/db context))]
-             [:li [:a {:href (:page/uri blog-post)} (:page/title blog-post)]])]))
+  (layout
+   {:title "The Powerblog1"}
+   (md/render-html (:page/body page))
+   [:h2 "Blog posts"]
+   [:ul
+    (for [blog-post (get-blog-posts (:app/db context))]
+      [:li [:a {:href (:page/uri blog-post)} (:page/title blog-post)]])]
+   [:h2 "Songs of syx"]
+   [:ul
+    (for [blog-post (get-posts-by-tag (:app/db context) :songs-of-syx)]
+      [:li [:a {:href (:page/uri blog-post)} (:page/title blog-post)]])]
+   ))
 
 (defn render-article [context page]
   (layout {}
