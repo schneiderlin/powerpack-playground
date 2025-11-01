@@ -20,5 +20,8 @@
   (->> (d/entity db [:page/uri "/blog-posts/first-post/"])
        :blog-post/author
        (into {}))
+  
+  (require '[clojure.java.basis :as basis])
+  (basis/current-basis)
 
   :rcf)
