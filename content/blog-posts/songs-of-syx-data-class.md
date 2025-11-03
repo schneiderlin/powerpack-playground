@@ -147,3 +147,38 @@ Placement Tool (ToolPlacer)
   ├── Right-click → Cancel placement
   └── Undo button → Undo last placement
 ```
+
+## ToolManager
+place 每次在 UI 页面上选择需要规划的工具时调用. 例如创建新房间, 复制房间, 复制区域.
+复制区域分成两个 tool, First 是复制阶段, Second 是粘贴阶段.
+
+## PLACABLE, PlacableFixed, PlacableMulti
+PLACABLE 是 ToolPlacer 调用 place 需要传入参数的基类. 
+
+PlacableFixed 是在 PLACABLE 的基础上多了 width height size 之类的, 是固定大小的. 例如住房
+是否可以放置都是 PlacableFixed 自己判断
+```java
+public abstract CharSequence placable(int tx, int ty, int rx, int ry);
+public abstract CharSequence placableWhole(int tx1, int ty1);
+```
+
+PlacableMulti 是需要自己选多个 tile, 例如各种工仿.
+和 Fixed 的主要区别在于判断是否能放置
+```java
+public abstract CharSequence isPlacable(int tx, int ty, AREA area, PLACER_TYPE type); 
+// Validate entire area
+public CharSequence isPlacable(AREA area, PLACER_TYPE type);
+```
+
+复制区域的 First 阶段是 Multi, Second 阶段是 Fixed
+
+## UICopier
+
+UICopier 是没 data 的.
+可以跳过第一阶段的 First tool. 
+持久化的数据可以通过调用 Source.set 读回到内存里面.
+设置好 Source 之后把 tool 替换成 Second. 就会自动 render 对应的 place holder.
+
+实际放置的时候
+Second.place 会被调用 n 次, n 是单元格数量.
+
