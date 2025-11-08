@@ -1,9 +1,9 @@
 name: Deploy to GitHub Pages
 
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -30,19 +30,15 @@ jobs:
       - name: Build site
         run: clojure -M:build
       
-      # - name: Deploy to GitHub Pages
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   if: github.ref == 'refs/heads/main'
-      #   with:
-      #     # Use PAT for external repo, or GITHUB_TOKEN for same repo
-      #     github_token: ${{ secrets.PAGES_DEPLOY_TOKEN || secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./target/powerpack
-      #     # Deploy to separate public repository (recommended for private repos)
-      #     # Create a public repo like 'your-username.github.io' or 'your-username-pages'
-      #     # Then uncomment and set:
-      #     external_repository: schneiderlin/blog
-      #     publish_branch: main
-      #     
-      #     # If deploying to same repo's gh-pages branch (repo must be public):
-      #     # publish_branch: gh-pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # Must use personal_token (fine-grained PAT) for external repos
+          # GITHUB_TOKEN only works for same repository
+          personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          publish_dir: ./target/powerpack
+          external_repository: schneiderlin/blog
+          publish_branch: main
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
 
