@@ -68,8 +68,7 @@
    [:h2 "Songs of syx"]
    [:ul
     (for [blog-post (get-posts-by-tag (:app/db context) :songs-of-syx)]
-      [:li [:a {:href (:page/uri blog-post)} (:page/title blog-post)]])]
-   ))
+      [:li [:a {:href (:page/uri blog-post)} (:page/title blog-post)]])]))
 
 (defn render-article [context page]
   (layout {}

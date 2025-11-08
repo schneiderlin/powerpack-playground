@@ -82,7 +82,7 @@ jobs:
           # GITHUB_TOKEN only works for same repository
           personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
           publish_dir: ./target/powerpack
-          external_repository: schneiderlin/blog
+          external_repository: schneiderlin/schneiderlin.github.io
           publish_branch: main
           keep_files: false  # Clean deploy - remove old files
           user_name: 'github-actions[bot]'
