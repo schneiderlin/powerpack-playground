@@ -1,0 +1,32 @@
+name: Test Deploy to External Repo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+      
+      - name: Create test directory with readme.md
+        run: |
+          mkdir -p test-publish
+          cp readme.md test-publish/
+      
+      - name: Test Deploy to External Repository
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # Must use PAGES_DEPLOY_TOKEN (fine-grained PAT) for external repos
+          # GITHUB_TOKEN only works for same repository
+          personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          publish_dir: ./test-publish
+          publish_branch: main
+          external_repository: schneiderlin/blog
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+
