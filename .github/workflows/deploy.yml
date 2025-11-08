@@ -28,13 +28,38 @@ jobs:
           cli: latest  # or specify a version like '1.11.1.1413'
       
       - name: Build site
-        run: clojure -M:build
+        run: |
+          echo "Running build command..."
+          clojure -M:build || {
+            echo "Build failed with exit code $?"
+            echo "Checking for any output directories..."
+            find . -type d -name "*powerpack*" -o -name "*target*" 2>/dev/null | head -20
+            exit 1
+          }
+          echo "Build completed. Checking output..."
       
       - name: Verify build output
         run: |
+          echo "Current directory: $(pwd)"
+          echo "Listing all directories:"
+          ls -la
+          echo ""
+          echo "Checking if target directory exists:"
+          if [ -d "target" ]; then
+            echo "target/ exists. Contents:"
+            ls -la target/
+          else
+            echo "target/ does NOT exist!"
+          fi
+          echo ""
           echo "Checking if target/powerpack exists..."
           if [ ! -d "target/powerpack" ]; then
             echo "ERROR: target/powerpack directory not found!"
+            echo "Searching for powerpack directories:"
+            find . -type d -name "*powerpack*" 2>/dev/null
+            echo ""
+            echo "Searching for any HTML files:"
+            find . -name "*.html" 2>/dev/null | head -10
             exit 1
           fi
           echo "Directory exists. Listing contents:"
