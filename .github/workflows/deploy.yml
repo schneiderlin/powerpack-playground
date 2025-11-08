@@ -30,7 +30,7 @@ jobs:
       - name: Build site
         run: |
           echo "Running build command..."
-          clojure -M:build || {
+          clojure -X:build || {
             echo "Build failed with exit code $?"
             echo "Checking for any output directories..."
             find . -type d -name "*powerpack*" -o -name "*target*" 2>/dev/null | head -20
