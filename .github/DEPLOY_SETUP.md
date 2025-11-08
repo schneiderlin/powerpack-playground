@@ -10,10 +10,17 @@ This keeps your main repository private while only the generated site is public.
 
 1. **Create a new public repository** on GitHub (e.g., `your-username.github.io` or `your-username-pages`)
 
-2. **Create a Personal Access Token (PAT)**:
-   - Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
-   - Generate a new token with `repo` scope
-   - Copy the token
+2. **Create a Fine-grained Personal Access Token (PAT)**:
+   - Go to GitHub Settings → Developer settings → Personal access tokens → Fine-grained tokens
+   - Click "Generate new token"
+   - **Token name**: e.g., "GitHub Pages Deploy"
+   - **Expiration**: Set your preferred expiration (or no expiration)
+   - **Repository access**: Select "Only select repositories" and choose your public repository (e.g., `your-username/blog`)
+   - **Permissions**:
+     - Repository permissions → **Contents**: Read and write
+     - Repository permissions → **Metadata**: Read-only (automatically included)
+   - Click "Generate token"
+   - **Copy the token immediately** (you won't be able to see it again)
 
 3. **Add the token as a secret**:
    - In your **private repository** (this one), go to Settings → Secrets and variables → Actions
