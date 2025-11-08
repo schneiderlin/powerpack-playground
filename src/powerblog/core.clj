@@ -55,11 +55,11 @@
     content]])
 
 (def header
-  [:header [:a {:href "/"} "Powerblog"]])
+  [:header [:a {:href "/"} "首页"]])
 
 (defn render-frontpage [context page]
   (layout
-   {:title "The Powerblog1"}
+   {:title "Jan 博客"}
    (md/render-html (:page/body page))
    [:h2 "Blog posts"]
    [:ul
