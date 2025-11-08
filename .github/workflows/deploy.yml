@@ -30,6 +30,26 @@ jobs:
       - name: Build site
         run: clojure -M:build
       
+      - name: Verify build output
+        run: |
+          echo "Checking if target/powerpack exists..."
+          if [ ! -d "target/powerpack" ]; then
+            echo "ERROR: target/powerpack directory not found!"
+            exit 1
+          fi
+          echo "Directory exists. Listing contents:"
+          ls -la target/powerpack/
+          echo ""
+          echo "Counting files:"
+          file_count=$(find target/powerpack -type f | wc -l)
+          echo "Found $file_count files"
+          if [ "$file_count" -eq 0 ]; then
+            echo "ERROR: No files found in target/powerpack!"
+            exit 1
+          fi
+          echo "Sample files:"
+          find target/powerpack -type f | head -10
+      
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -39,6 +59,7 @@ jobs:
           publish_dir: ./target/powerpack
           external_repository: schneiderlin/blog
           publish_branch: main
+          keep_files: false  # Clean deploy - remove old files
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
 
