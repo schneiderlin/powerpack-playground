@@ -28,7 +28,7 @@ jobs:
           cli: latest  # or specify a version like '1.11.1.1413'
       
       - name: Build site
-        run: clj -M:build
+        run: clojure -M:build
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
