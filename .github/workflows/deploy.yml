@@ -1,0 +1,90 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      
+      - name: Setup Clojure CLI
+        uses: DeLaGuardo/setup-clojure@13.4
+        with:
+          cli: latest  # or specify a version like '1.11.1.1413'
+      
+      - name: Build site
+        run: |
+          echo "Running build command..."
+          clojure -X:build || {
+            echo "Build failed with exit code $?"
+            echo "Checking for any output directories..."
+            find . -type d -name "*powerpack*" -o -name "*target*" 2>/dev/null | head -20
+            exit 1
+          }
+          echo "Build completed. Checking output..."
+      
+      - name: Verify build output
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Listing all directories:"
+          ls -la
+          echo ""
+          echo "Checking if target directory exists:"
+          if [ -d "target" ]; then
+            echo "target/ exists. Contents:"
+            ls -la target/
+          else
+            echo "target/ does NOT exist!"
+          fi
+          echo ""
+          echo "Checking if target/powerpack exists..."
+          if [ ! -d "target/powerpack" ]; then
+            echo "ERROR: target/powerpack directory not found!"
+            echo "Searching for powerpack directories:"
+            find . -type d -name "*powerpack*" 2>/dev/null
+            echo ""
+            echo "Searching for any HTML files:"
+            find . -name "*.html" 2>/dev/null | head -10
+            exit 1
+          fi
+          echo "Directory exists. Listing contents:"
+          ls -la target/powerpack/
+          echo ""
+          echo "Counting files:"
+          file_count=$(find target/powerpack -type f | wc -l)
+          echo "Found $file_count files"
+          if [ "$file_count" -eq 0 ]; then
+            echo "ERROR: No files found in target/powerpack!"
+            exit 1
+          fi
+          echo "Sample files:"
+          find target/powerpack -type f | head -10
+      
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # Must use personal_token (fine-grained PAT) for external repos
+          # GITHUB_TOKEN only works for same repository
+          personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          publish_dir: ./target/powerpack
+          external_repository: schneiderlin/schneiderlin.github.io
+          publish_branch: main
+          keep_files: false  # Clean deploy - remove old files
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+
