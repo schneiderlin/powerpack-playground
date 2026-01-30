@@ -6,3 +6,9 @@
 target
 
 node_modules
+
+# tailwind output
+resources/public/css/styles.css
+
+# opencode
+.opencode

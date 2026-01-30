@@ -1,35 +1,47 @@
 (ns powerblog.components)
 
 (def navbar
-  [:nav {:class "bg-primary-400"}
-   [:div {:class "flex flex-wrap items-center justify-between mx-auto py-4 px-8"}
-    ;; Logo section
-    [:a {:href "/" :class "flex items-center space-x-3"}
-     [:img {:src "/favicon.svg" :class "h-8" :alt "LinZiHao's Digital Garden"}]
-     [:span {:class "self-center text-2xl font-semibold whitespace-nowrap"}
-      "LinZiHao's Digital Garden"]]
+  [:nav {:class "bg-surface-elevated border-b border-border-default sticky top-0 z-50"}
+   [:div {:class "layout-container"}
+    [:div {:class "flex items-center justify-between h-14"}
+     ;; Logo section
+     [:a {:href "/" :class "flex items-center gap-3 group"}
+      [:div {:class "w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center"}
+       [:svg {:class "w-5 h-5 text-white" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "2"}
+        [:path {:d "M4 4h16v12H4z"}]
+        [:path {:d "M8 20h8"}]
+        [:path {:d "M12 16v4"}]]]
+      [:span {:class "text-lg font-semibold text-gray-900 group-hover:text-primary-600 transition-colors duration-200"}
+       "LinZiHao"]]
 
-    ;; Mobile menu button
-    [:button {:type "button"
-              :class "inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden hover:bg-primary-100"
-              :aria-controls "navbar-default"
-              :aria-expanded "false"
-              :id "mobile-menu-button"}
-     [:span {:class "sr-only"} "打开菜单"]
-     [:svg {:class "w-5 h-5" :aria-hidden "true" :xmlns "http://www.w3.org/2000/svg"
-            :fill "none" :viewBox "0 0 17 14"}
-      [:path {:stroke "currentColor" :stroke-linecap "round" :stroke-linejoin "round"
-              :stroke-width "2" :d "M1 1h15M1 7h15M1 13h15"}]]]
+     ;; Desktop Navigation links
+     [:div {:class "hidden md:flex items-center gap-1"}
+      [:a {:href "/"
+           :class "px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-colors duration-200"}
+       "Home"]
+      [:a {:href "/about"
+           :class "px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-colors duration-200"}
+       "About"]]
 
-    ;; Navigation links
-    [:div {:class "w-full md:block md:w-auto hidden" :id "navbar-default"}
-     [:ul {:class "flex flex-col p-4 md:p-0 mt-4 border md:flex-row md:space-x-8 md:mt-0 md:border-0 items-center"}
-      [:li
-       [:a {:href "/" :class "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"}
-        "Home"]]
-      [:li
-       [:a {:href "/about" :class "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"}
-        "About"]]]]]])
+     ;; Mobile menu button
+     [:button {:type "button"
+               :class "md:hidden p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors duration-200"
+               :aria-controls "navbar-default"
+               :aria-expanded "false"
+               :id "mobile-menu-button"}
+      [:span {:class "sr-only"} "打开菜单"]
+      [:svg {:class "w-5 h-5" :aria-hidden "true" :xmlns "http://www.w3.org/2000/svg"
+             :fill "none" :viewBox "0 0 17 14"}
+       [:path {:stroke "currentColor" :stroke-linecap "round" :stroke-linejoin "round"
+               :stroke-width "2" :d "M1 1h15M1 7h15M1 13h15"}]]]]
+
+    ;; Mobile Navigation menu
+    [:div {:class "hidden md:hidden border-t border-border-default py-2" :id "navbar-default"}
+     [:div {:class "flex flex-col gap-1"}
+      [:a {:href "/" :class "px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-colors duration-200"}
+       "Home"]
+      [:a {:href "/about" :class "px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-colors duration-200"}
+       "About"]]]]])
 
 (def navbar-script
   "document.getElementById('mobile-menu-button').addEventListener('click', function() {
@@ -38,36 +50,31 @@
   });")
 
 (def footer
-  [:footer {:class "w-full bg-gray-100 py-8"}
-   [:div {:class "container mx-auto px-4"}
-    [:div {:class "flex flex-col items-center justify-center space-y-4"}
+  [:footer {:class "w-full bg-surface-elevated border-t border-border-default mt-auto"}
+   [:div {:class "layout-container py-8"}
+    [:div {:class "flex flex-col items-center justify-center gap-6"}
      ;; Social links
-     [:nav {:class "flex flex-wrap justify-center gap-4"}
+     [:nav {:class "flex flex-wrap justify-center gap-6"}
       [:a {:href "https://www.linkedin.com/in/zihao-lin-8b8067326/"
            :target "_blank" :rel "noopener noreferrer"
-           :class "text-gray-600 hover:text-gray-900 transition-colors"}
-       [:span {:class "sr-only"} "LinkedIn"]
+           :class "text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"}
        "LinkedIn"]
       [:a {:href "https://x.com/fTJSaF2VnI11762"
            :target "_blank" :rel "noopener noreferrer"
-           :class "text-gray-600 hover:text-gray-900 transition-colors"}
-       [:span {:class "sr-only"} "X (Twitter)"]
-       "X"]
+           :class "text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"}
+       "X (Twitter)"]
       [:a {:href "https://space.bilibili.com/375039815"
            :target "_blank" :rel "noopener noreferrer"
-           :class "text-gray-600 hover:text-gray-900 transition-colors"}
-       [:span {:class "sr-only"} "Bilibili"]
+           :class "text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"}
        "Bilibili"]
       [:a {:href "https://www.zhihu.com/people/lin-zi-hao-8-89"
            :target "_blank" :rel "noopener noreferrer"
-           :class "text-gray-600 hover:text-gray-900 transition-colors"}
-       [:span {:class "sr-only"} "Zhihu"]
+           :class "text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"}
        "Zhihu"]
       [:a {:href "https://github.com/schneiderlin"
            :target "_blank" :rel "noopener noreferrer"
-           :class "text-gray-600 hover:text-gray-900 transition-colors"}
-       [:span {:class "sr-only"} "GitHub"]
+           :class "text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"}
        "GitHub"]]
      ;; Copyright
-     [:p {:class "text-sm text-gray-500"}
-      (str "© " (.getYear (java.time.LocalDate/now)) " LinZiHao's Digital Garden. All rights reserved.")]]]])
+     [:p {:class "text-sm text-gray-400"}
+      (str "© " (.getYear (java.time.LocalDate/now)) " LinZiHao. All rights reserved.")]]]])
