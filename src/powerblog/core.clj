@@ -144,8 +144,8 @@
     [:meta {:name "description" :content (or description "Blog")}]
     (when title [:title title])
     [:link {:rel "icon" :type "image/svg+xml" :href "/favicon.svg"}]
-    ;; Tailwind CSS CDN
-    [:script {:src "https://cdn.tailwindcss.com"}]
+    ;; Design System CSS
+    [:link {:rel "stylesheet" :href "/css/styles.css"}]
     ;; Tailwind configuration to match old blog
     [:script "
       tailwind.config = {
@@ -366,9 +366,6 @@
    :powerpack/render-page #'render-page
    :powerpack/create-ingest-tx #'create-tx
    :optimus/assets [{:public-dir "public"
-                     :paths ["/favicon.svg"]}]
-   #_#_:optimus/bundles {"app.css"
-                     {:public-dir "public"
-                      :paths ["/styles.css"]}}
+                     :paths ["/favicon.svg" "/css/styles.css"]}]
    :optimus/options {:minify-js-assets? false
                      :minify-css-assets? false}})

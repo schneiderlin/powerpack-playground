@@ -1,0 +1,3 @@
+{:paths ["bb" "src"] 
+ :tasks {tw {:doc "Watch Tailwind CSS"
+             :task "npx @tailwindcss/cli -i ./resources/public/css/input.css -o ./resources/public/css/styles.css --watch"}}}
