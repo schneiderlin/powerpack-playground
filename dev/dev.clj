@@ -1,8 +1,7 @@
 (ns dev
-  (:require [powerblog.core :as blog]
-            [powerpack.dev :as dev]
-            [powerpack.watcher :as watcher]
-            [clojure.java.io :as io]))
+  (:require
+   [powerblog.core :as blog]
+   [powerpack.dev :as dev]))
 
 (defmethod dev/configure! :default []
   blog/config)
