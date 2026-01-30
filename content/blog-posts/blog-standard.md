@@ -1,17 +1,10 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "What Makes a Good Blog: Beyond Aesthetics and Technical Aspects"
+:page/description "The concept of digital gardening, ideal navigation structures, and content update challenges"
+:page/date "2024-09-05"
+:blog-post/tags [:blog]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: "What Makes a Good Blog: Beyond Aesthetics and Technical Aspects"
-author: linzihao
-date: "2024-09-05"
-description: The concept of digital gardening, ideal navigation structures, and content update challenges
-lang: "en"
-tags: ["blog"]
----
+
 A good blog should go beyond visual appeal and technical aspects like loading speed, responsiveness, and mobile-friendly design. It should arrange content in a way that is cognitively efficient for humans and entice readers to continue reading, similar to writing a marketing campaign document.
 
 ## Digital Garden

@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "Kleisli"
+:page/description "An introduction to Kleisli arrows in functional programming, explaining how they enable composition of functions that return monadic values. The post covers the concept of Kleisli composition, its implementation in Cats, and provides examples using the Writer monad."
+:page/date "2018-11-20"
+:blog-post/tags [:functional-programming :scala]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: "Kleisli"
-author: linzihao
-tags: ["functional programming", "scala"]
-date: "2018-11-20"
-lang: "zh"
-description: An introduction to Kleisli arrows in functional programming, explaining how they enable composition of functions that return monadic values. The post covers the concept of Kleisli composition, its implementation in Cats, and provides examples using the Writer monad.
----
 
 function可以compose
 A => B和B => C这样的两个function可以compose起来变成A => C的函数。

@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "数据库的储存方式"
+:page/description "An overview of database storage methods, including log-structured storage, indexing techniques, Sorted String Tables (SSTs), and B-trees. The post explores the advantages of each approach and discusses optimizations for improved performance and reliability."
+:page/date "2018-08-30"
+:blog-post/tags [:database]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: "数据库的储存方式"
-author: linzihao
-tags: ["database"]
-date: "2018-08-30"
-lang: "zh"
-description: An overview of database storage methods, including log-structured storage, indexing techniques, Sorted String Tables (SSTs), and B-trees. The post explores the advantages of each approach and discusses optimizations for improved performance and reliability.
----
 
 ## Log
 只能append的一个file

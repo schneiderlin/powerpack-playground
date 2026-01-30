@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "Contravariant Functor Intuition"
+:page/description "An exploration of contravariant functors in functional programming, explaining their definition, intuition, and practical applications. The post covers the contramap function, compares it with covariant functors, and provides examples using Show and Ordering types in Scala."
+:page/date "2018-11-19"
+:blog-post/tags [:scala :functional-programming]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: Contravariant Functor Intuition
-author: linzihao
-tags: ["scala", "functional programming"]
-date: "2018-11-19"
-lang: "zh"
-description: An exploration of contravariant functors in functional programming, explaining their definition, intuition, and practical applications. The post covers the contramap function, compares it with covariant functors, and provides examples using Show and Ordering types in Scala.
----
 
 ## contravariant
 contravariant是一个定义了contramap函数的functor

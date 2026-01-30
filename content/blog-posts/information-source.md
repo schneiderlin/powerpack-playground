@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "我的信息来源"
+:page/description "记录信息来源, 持续修订"
+:page/date "2024-09-10"
+:blog-post/tags []
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: 我的信息来源
-author: linzihao
-tags: []
-date: "2024-09-10"
-description: 记录信息来源, 持续修订
-lang: "zh"
----
 
 这个列表是记录我从什么来源获取信息, 作用是持续关注信息源并且评分和修改. 避免花费太多精力在低质量信息上.
 

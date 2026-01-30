@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "网络协议七层模型"
+:page/description "An overview of the OSI and TCP/IP network models, explaining the functions of each layer and how they interact. This post also covers network topologies and protocols like CSMA and token ring used in bus networks."
+:page/date "2018-09-03"
+:blog-post/tags [:networking]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: "网络协议七层模型"
-author: linzihao
-tags: ["networking"]
-date: "2018-09-03"
-description: An overview of the OSI and TCP/IP network models, explaining the functions of each layer and how they interact. This post also covers network topologies and protocols like CSMA and token ring used in bus networks.
-lang: "zh"
----
 
 ## OSI
 - physical

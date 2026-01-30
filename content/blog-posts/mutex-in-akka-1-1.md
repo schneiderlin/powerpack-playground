@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "akka实现logical timestamp和分布式锁, part 1-1: 问题描述和总体框架"
+:page/description "An implementation of a distributed mutex using Akka, exploring logical timestamps and consensus algorithms. This post introduces the problem, outlines the requirements for the distributed lock, and sets up the basic Akka actor structure for the solution."
+:page/date "2018-12-25"
+:blog-post/tags [:akka :distributed-system :scala]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: "akka实现logical timestamp和分布式锁, part 1-1: 问题描述和总体框架"
-date: "2018-12-25"
-tags: ["akka", "distributed system", "scala"]
-author: linzihao
-lang: "zh"
-description: An implementation of a distributed mutex using Akka, exploring logical timestamps and consensus algorithms. This post introduces the problem, outlines the requirements for the distributed lock, and sets up the basic Akka actor structure for the solution.
----
 
 用akka实现一个分布式锁，并且模拟各种网络环境进行测试(延迟，重复，乱序，丢包等)，这个实现
 必须在所有的网络情况下都能正常工作。  

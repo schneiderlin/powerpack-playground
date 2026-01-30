@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "polymorphic function value 2"
+:page/description "An exploration of polymorphic function values in Scala, focusing on natural transformations. This post discusses the limitations of standard Scala function values and introduces a more flexible approach for handling polymorphic functions, particularly useful for operations on heterogeneous lists (HLists)."
+:page/date "2018-11-29"
+:blog-post/tags [:scala :shapeless]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: "polymorphic function value 2"
-author: linzihao
-tags: ["scala", "shapeless"]
-date: "2018-11-29"
-lang: "zh"
-description: An exploration of polymorphic function values in Scala, focusing on natural transformations. This post discusses the limitations of standard Scala function values and introduces a more flexible approach for handling polymorphic functions, particularly useful for operations on heterogeneous lists (HLists).
----
 
 ## polymorphic function value 2 natural transformation
 在上一篇中可以看到标准的scala function value不够polymorphic，不能用来map HList。

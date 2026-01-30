@@ -1,17 +1,10 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "Many Java Codebases Are a Mess"
+:page/description "Me rant about Java and Java devs"
+:page/date "2024-09-14"
+:blog-post/tags [:java]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: Many Java Codebases Are a Mess
-author: linzihao
-date: "2024-09-14"
-lang: "en"
-tags: ["Java"]
-description: "Me rant about Java and Java devs"
----
+
 I have seen many examples of how a Java codebase turns into a mess.
 Every developer talks about decoupling, testability, and ease of refactoring. Yet, they use many features of Spring to turn their codebase into brittle spaghetti.
 

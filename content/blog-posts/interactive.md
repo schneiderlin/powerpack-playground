@@ -1,17 +1,10 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "Exploring Interactivity in Astro"
+:page/description "Discovering the interactive capabilities of Astro-powered websites using MDX"
+:page/date "2024-09-12"
+:blog-post/tags [:astro]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: Exploring Interactivity in Astro
-author: linzihao
-date: "2024-09-12"
-lang: "en"
-tags: ["astro"]
-description: "Discovering the interactive capabilities of Astro-powered websites using MDX"
----
+
 import { Alert, AlertTitle, AlertDescription } from '@components/ui/alert';
 import Counter from "@/components/Counter";
 import Reagent from "@/components/Reagent.astro";

@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "全链路追踪的各种概念"
+:page/description "An overview of distributed tracing concepts, including traces, spans, and contexts, with a focus on OpenTracing standards and their applications in system monitoring and debugging."
+:page/date "2023-02-02"
+:blog-post/tags [:distributed-system]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: 全链路追踪的各种概念
-author: linzihao
-tags: ["distribute system"]
-date: "2023-02-02"
-description: An overview of distributed tracing concepts, including traces, spans, and contexts, with a focus on OpenTracing standards and their applications in system monitoring and debugging.
-lang: "zh"
----
 
 全链路指的是从客户端发起请求开始, 到网关, 可能经过多个应用服务器, 再到数据库.
 全链路追踪是为了方便排查问题, 不再需要人工的把各种零散的日志拼凑起来.

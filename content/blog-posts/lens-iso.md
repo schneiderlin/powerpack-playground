@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "Lens part1 - Iso"
+:page/description "An introduction to Iso, a type of lens in functional programming that represents isomorphisms between types. The post explains the concept, provides code examples in Scala, and demonstrates practical applications of Iso in handling unit conversions."
+:page/date "2019-04-18"
+:blog-post/tags [:functional-programming :scala]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: Lens part1 - Iso
-author: linzihao
-tags: ["functional programming", "scala"]
-date: "2019-04-18"
-description: An introduction to Iso, a type of lens in functional programming that represents isomorphisms between types. The post explains the concept, provides code examples in Scala, and demonstrates practical applications of Iso in handling unit conversions.
-lang: "zh"
----
 
 Iso是Isomorphism，```MIso[A, B]```表示A和B之间有一个isomorphism  
 

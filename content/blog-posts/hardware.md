@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "交换机，路由器等硬件"
+:page/description "An overview of networking hardware including hubs, switches, and routers, along with traffic classification and packet capture techniques. This post explores the differences between these devices, their roles in network communication, and methods for monitoring network traffic."
+:page/date "2018-11-13"
+:blog-post/tags [:networking]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: "交换机，路由器等硬件"
-author: linzihao
-tags: ["networking"]
-lang: "zh"
-date: "2018-11-13"
-description: An overview of networking hardware including hubs, switches, and routers, along with traffic classification and packet capture techniques. This post explores the differences between these devices, their roles in network communication, and methods for monitoring network traffic.
----
 
 ## hardware
 ### hub

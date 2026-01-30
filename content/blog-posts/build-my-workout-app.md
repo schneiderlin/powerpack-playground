@@ -1,18 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "Build My Workout App"
+:page/description "Why and How I built my workout App in 3 days"
+:page/date "2024-09-04"
+:blog-post/tags [:mobile-app :react :react-native]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: Build My Workout App
-author: linzihao
-tags: ["mobile app", "react", "react native"]
-date: "2024-09-04"
-lang: "en"
-cover: "workout_app/3.jpg"
-description: "Why and How I built my workout App in 3 days"
----
 
 import { Image } from 'astro:assets';
 import i1 from '@/assets/workout_app/1.jpg';

@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "map reduce"
+:page/description "An overview of the MapReduce distributed computing model based on the original Google paper. This post covers the MapReduce workflow, master-worker architecture, fault tolerance mechanisms, and optimization techniques like data locality and backup tasks. It also addresses common questions about task granularity and failure handling in MapReduce systems."
+:page/date "2018-11-30"
+:blog-post/tags [:distributed-system :6.824]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: map reduce
-author: linzihao
-tags: ["distributed system", "6.824"]
-lang: "zh"
-date: "2018-11-30"
-description: An overview of the MapReduce distributed computing model based on the original Google paper. This post covers the MapReduce workflow, master-worker architecture, fault tolerance mechanisms, and optimization techniques like data locality and backup tasks. It also addresses common questions about task granularity and failure handling in MapReduce systems.
----
 
 ## map reduce论文
 https://pdos.csail.mit.edu/6.824/papers/mapreduce.pdf

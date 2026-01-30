@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "free functor/monad"
+:page/description "An exploration of natural transformations between functors in functional programming, introducing the concept of Free functors and demonstrating how to implement conversions between different container types like Monix Task, Scala Future, and Java CompletableFuture."
+:page/date "2019-01-02"
+:blog-post/tags [:functional-programming :scala]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: "free functor/monad"
-author: linzihao
-tags: ["functional programming", "scala"]
-date: "2019-01-02"
-lang: "zh"
-description: An exploration of natural transformations between functors in functional programming, introducing the concept of Free functors and demonstrating how to implement conversions between different container types like Monix Task, Scala Future, and Java CompletableFuture.
----
 
 Functor可以用map改变F[_]里面的type   
 Monad可以用flatMap改变M[_]里面的type    

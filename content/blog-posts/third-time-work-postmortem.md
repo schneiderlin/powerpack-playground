@@ -1,16 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "ThirdTime 工作法使用一个月后的心得体会"
+:page/description "A reflection on the experience of using the ThirdTime work method for one month, discussing the challenges and achievements, and providing insights into the work method."
+:page/date "2024-07-10"
+:blog-post/tags [:time-management]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: ThirdTime 工作法使用一个月后的心得体会
-date: "2024-07-10"
-description: A reflection on the experience of using the ThirdTime work method for one month, discussing the challenges and achievements, and providing insights into the work method.
-tags: ["time management"]
-lang: "zh"
----
 
 ThirdTime 工作法可以看作是番茄工作法的升级版, 之前在 [bilibili](https://www.bilibili.com/opus/935450195019169830) 上发过.
 简单来说就是以下的规则

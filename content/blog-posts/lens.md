@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "lens，函数式的getter和setter"
+:page/description "An introduction to lenses in functional programming, explaining how they serve as functional equivalents to getters and setters in object-oriented programming, with code examples in Scala."
+:page/date "2018-11-22"
+:blog-post/tags [:functional-programming :scala]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: lens，函数式的getter和setter
-author: linzihao
-tags: ["functional programming", "scala"]
-date: "2018-11-22"
-description: An introduction to lenses in functional programming, explaining how they serve as functional equivalents to getters and setters in object-oriented programming, with code examples in Scala.
-lang: "zh"
----
 
 ## Lens, getter/setter the functional way
 在OOP和FP中，一个type里面往往包含了另一个type。

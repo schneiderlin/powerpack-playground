@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "raft"
+:page/description "An overview of the Raft consensus algorithm, explaining its key components including leader election and log replication. This post covers the basics of how Raft ensures consistency across distributed systems, handles network partitions, and maintains a replicated state machine."
+:page/date "2018-10-29"
+:blog-post/tags [:distributed-system :6.824]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: raft
-author: linzihao
-tags: ["distributed system", "6.824"]
-date: "2018-10-29"
-description: An overview of the Raft consensus algorithm, explaining its key components including leader election and log replication. This post covers the basics of how Raft ensures consistency across distributed systems, handles network partitions, and maintains a replicated state machine.
-lang: "zh"
----
 
 ## Raft
 是一个replicate state machine的protocol。

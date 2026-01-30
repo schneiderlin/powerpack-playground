@@ -1,17 +1,9 @@
-:page/title "Untitled"
+:page/title "Decompose task"
 :page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/date "2024-09-03"
+:blog-post/tags []
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: Decompose task
-author: linzihao
-date: "2024-09-03"
-lang: "en"
-tags: []
-description: ""
----
 
 When faced with a task that you find yourself procrastinating on, breaking it down into smaller, manageable parts can be an effective strategy.
 I use [Magic TODO](https://goblin.tools/) to help me decompose task, it use LLM to

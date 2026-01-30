@@ -1,16 +1,10 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "用 MessageChannel 和 iframe 通信"
+:page/description "An explanation of how to use MessageChannel for bidirectional communication between a parent page and an iframe, with code examples and step-by-step instructions."
+:page/date "2023-01-23"
+:blog-post/tags [:javascript]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: 用 MessageChannel 和 iframe 通信
-date: "2023-01-23"
-tags: ["javascript"]
-description: An explanation of how to use MessageChannel for bidirectional communication between a parent page and an iframe, with code examples and step-by-step instructions.
-lang: "zh"
----
+
 怎么用 MessageChannel, 在 parent 和 iframe 之间实现双向消息传递功能.
 首先有两个 html, index.html 里面内嵌了 iframe inner.html
 

@@ -1,16 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "RocketMQ 5.0 解锁任意时间延迟消息能力"
+:page/description "An exploration of the new delay message feature in RocketMQ 5.0, discussing its implementation and how to set the precision parameter for optimal performance."
+:page/date "2023-02-23"
+:blog-post/tags [:rocketmq]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: "RocketMQ 5.0 解锁任意时间延迟消息能力"
-date: "2023-02-23"
-tags: ["rocketmq"]
-description: An exploration of the new delay message feature in RocketMQ 5.0, discussing its implementation and how to set the precision parameter for optimal performance.
-lang: "zh"
----
 
 过去，阿里云商用的 RocketMQ 支持任意时间延迟消息, 但是开源 4.x 版本的不支持. 只有默认 18 个 level 的延迟消息, 分别是 1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h。然而，最新版本5.0中，RocketMQ引入了任意时间延迟消息的灵活性。它的实现是基于时间轮算法，并具有可调整的精度参数。在本文中，我们将深入探讨新的延迟消息功能，探索其背后的原理，并讨论如何为获得最佳效果，正确设置精度参数。
 

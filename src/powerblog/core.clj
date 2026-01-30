@@ -305,16 +305,16 @@
              "Table of Contents"]
             [:ul {:class "font-sans"}
              (for [heading toc]
-               [:li (render-toc-item heading)])]])]
+               [:li (render-toc-item heading)])]])]]]
 
         ;; Center column - Content
-        [:article {:class "prose lg:prose-xl lg:w-4/5 font-sans max-w-none"}
-         (hiccup/unescape body-html-str)]
+      [:article {:class "prose lg:prose-xl lg:w-4/5 font-sans max-w-none"}
+       (hiccup/unescape body-html-str)]
 
         ;; Right column - Backlinks placeholder
-        [:div {:class "lg:w-1/5 lg:sticky lg:top-24 lg:self-start"}
-         [:div {:class "pb-4 text-2xl font-bold text-gray-800"}
-          "Backlinks"]]]]]
+      [:div {:class "lg:w-1/5 lg:sticky lg:top-24 lg:self-start"}
+       [:div {:class "pb-4 text-2xl font-bold text-gray-800"}
+        "Backlinks"]]]
 
      ;; TOC highlight script
      [:script "
@@ -367,7 +367,7 @@
    :powerpack/create-ingest-tx #'create-tx
    :optimus/assets [{:public-dir "public"
                      :paths ["/favicon.svg"]}]
-   :optimus/bundles {"app.css"
+   #_#_:optimus/bundles {"app.css"
                      {:public-dir "public"
                       :paths ["/styles.css"]}}
    :optimus/options {:minify-js-assets? false

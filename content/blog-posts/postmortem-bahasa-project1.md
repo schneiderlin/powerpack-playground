@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "学习印尼语一个月总结"
+:page/description "A summary of my experience learning Indonesian in one month, discussing the challenges and achievements, and providing insights into the learning process."
+:page/date "2024-08-06"
+:blog-post/tags [:language]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: "学习印尼语一个月总结"
-date: "2024-08-06"
-tags: ["language"]
-description: A summary of my experience learning Indonesian in one month, discussing the challenges and achievements, and providing insights into the learning process.
-author: linzihao
-lang: "zh"
----
 
 为什么我要学习印尼语, 上个月下载了 tandem, 本来是打算练习英语的, 但是在 tandem 上面遇到了很多友好的印尼朋友.
 我们平常使用英语交流, 说得最多的话题是怎么互相帮助学习语言, 我学习印尼语, 他们学习中文.

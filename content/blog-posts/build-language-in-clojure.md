@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "用clojure写个编译器, part1"
+:page/description "A tutorial series on building a compiler in Clojure, starting with simple arithmetic expressions and progressing to more complex language features, including AST visualization and compilation to stack-based VM instructions."
+:page/date "2023-01-21"
+:blog-post/tags [:clojure :compiler]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: "用clojure写个编译器, part1"
-author: linzihao
-tags: ["clojure", "compiler"]
-date: "2023-01-21"
-lang: "zh"
-description: A tutorial series on building a compiler in Clojure, starting with simple arithmetic expressions and progressing to more complex language features, including AST visualization and compilation to stack-based VM instructions.
----
 
 lisp 语言的 s-expression 非常适合用来处理 AST. 并且 clojurescript 写前端很方便, 有很好的库 re-frame, 还可以利用 npm 生态里面的其他库, 例如 d3 来做可视化.  
 这个系列会用 clojurescript 写一个编译器, 可以根据输入的源代码, 即时的 parse 成 AST, 并可视化. 再将 AST 进行多次编译到不同的 IR, 每层 IR 也有可视化. 最后会编译到栈式虚拟机的一串指令, 再加上栈式虚拟机逐步执行指令的可视化过程. 后续可能还会加上编译优化, 语法高亮, 自动补全等.  

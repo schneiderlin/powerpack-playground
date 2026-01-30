@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "RocketMQ 磁盘满处理方式"
+:page/description "An explanation of how RocketMQ handles disk full scenarios, including the error message, relevant source code, and the disk space checking mechanism."
+:page/date "2024-09-03"
+:blog-post/tags [:rocketmq]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: RocketMQ 磁盘满处理方式
-author: linzihao
-date: "2024-09-03"
-lang: "zh"
-tags: ["rocketmq"]
-description: An explanation of how RocketMQ handles disk full scenarios, including the error message, relevant source code, and the disk space checking mechanism.
----
 
 在本地启动 RocketMQ, 用 Producer 推消息的时候发现消息发送失败, 提示磁盘满失败
 

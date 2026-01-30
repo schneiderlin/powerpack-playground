@@ -1,17 +1,10 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "博客使用的技术栈"
+:page/description "An overview of the technologies and tools used to create this blog, including Astro, MDX, React, Tailwind CSS, and more."
+:page/date "2024-07-10"
+:blog-post/tags [:astro]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: 博客使用的技术栈
-author: linzihao
-date: "2024-07-10"
-description: An overview of the technologies and tools used to create this blog, including Astro, MDX, React, Tailwind CSS, and more.
-lang: "zh"
-tags: ["astro"]
----
+
 用的是 astro
 
 ## mdx

@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "at most once"
+:page/description "An explanation of how to implement at-most-once semantics in distributed systems, covering client-side XID usage, server-side result caching, and strategies for cache management and handling concurrent requests."
+:page/date "2018-11-29"
+:blog-post/tags [:distributed-system]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: at most once
-author: linzihao
-tags: ["distributed system"]
-date: "2018-11-29"
-description: An explanation of how to implement at-most-once semantics in distributed systems, covering client-side XID usage, server-side result caching, and strategies for cache management and handling concurrent requests.
-lang: "zh"
----
 
 ## 如何保证at-most-once semantic
 客户端每一次发送的时候带一个`XID`，重试请求的时候发相同的`XID`。

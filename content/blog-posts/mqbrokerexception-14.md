@@ -1,16 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "RocketMQ MQBrokerException: CODE: 14 问题排查"
+:page/description "A detailed investigation of the MQBrokerException code 14 issue in RocketMQ, discussing the causes and solutions."
+:page/date "2023-02-08"
+:blog-post/tags [:rocketmq]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: "RocketMQ MQBrokerException: CODE: 14 问题排查"
-date: "2023-02-08"
-description: A detailed investigation of the MQBrokerException code 14 issue in RocketMQ, discussing the causes and solutions.
-lang: "zh"
-tags: ["rocketmq"]
----
 
 在本地启动 RocketMQ, 用 Producer 推消息的时候发现消息发送失败, 提示磁盘满失败
 ```

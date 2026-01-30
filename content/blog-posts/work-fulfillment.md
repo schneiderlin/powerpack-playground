@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "Finding Fulfillment at Work"
+:page/description "Exploration of common workplace dissatisfaction factors and practical approaches to enhance career fulfillment."
+:page/date "2024-09-09"
+:blog-post/tags [:career :happiness]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: "Finding Fulfillment at Work"
-author: linzihao
-tags: ["career", "hapiness"]
-date: "2024-09-09"
-description: "Exploration of common workplace dissatisfaction factors and practical approaches to enhance career fulfillment."
-lang: "en"
----
 
 A fundamental principle in achieving workplace satisfaction is aligning oneself with a meaningful purpose. Dedicating your efforts to a cause greater than yourself can instill a sense of fulfillment that transcends basic job contentment.
 

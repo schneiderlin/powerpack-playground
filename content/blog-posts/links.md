@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "Support My Writing Journey"
+:page/description "it's like contribution.md on github, but for writing"
+:page/date "2024-09-20"
+:blog-post/tags [:blog]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: Support My Writing Journey
-author: linzihao
-date: "2024-09-20"
-lang: "en"
-tags: ["blog"]
-description: "it's like contribution.md on github, but for writing"
----
 
 I need someone to 
 - provide constructive feedback

@@ -1,17 +1,9 @@
-:page/title "Untitled"
-:page/description ""
-:page/date ""
-:blog-post/tags nil
+:page/title "string search algorithm #1: 暴力枚举和Boyer–Moore算法"
+:page/description "An introduction to string search algorithms, focusing on the naive brute-force approach and the Boyer-Moore algorithm. This post explains the basic concepts, implementation details, and efficiency improvements of these methods for finding substrings within larger text."
+:page/date "2018-12-07"
+:blog-post/tags [:algorithm]
 :blog-post/author {:person/id :jan}
 :page/body
----
-title: "string search algorithm #1: 暴力枚举和Boyer–Moore算法"
-date: "2018-12-07"
-tags: ["algorithm"]
-author: linzihao
-description: An introduction to string search algorithms, focusing on the naive brute-force approach and the Boyer-Moore algorithm. This post explains the basic concepts, implementation details, and efficiency improvements of these methods for finding substrings within larger text.
-lang: "zh"
----
 
 ## 暴力枚举
 固定input，滑动屏蔽词，每一个位置做一次对比。  
