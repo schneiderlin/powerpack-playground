@@ -1,0 +1,28 @@
+{:hooks {:analyze-call {clojure.core/def hooks.my/analyze}}
+ :linters {:fn-sym-in-def {:level :warning}
+           :hiccup-class-attr {:level :warning
+                              ;; Design system embedded (no file I/O in hooks).
+                              ;; Canonical source: design-system/design-tokens.edn — sync manually or via script.
+                              :design-system {:allowed-prefixes
+                                              ["text-primary-" "text-gray-" "text-white" "text-black"
+                                               "bg-surface-" "bg-primary-" "bg-gray-" "bg-success-" "bg-warning-" "bg-error-" "bg-info-" "bg-white"
+                                               "border-border-default" "border-primary-" "border-gray-" "border-b-" "border-t-" "border-l-" "border-r-"
+                                               "divide-border-default" "divide-gray-"
+                                               "text-success-" "text-error-" "text-warning-" "text-info-"
+                                               "layout-" "layout-sidebar" "layout-grid-" "layout-nav-" "layout-main"
+                                               "btn" "badge" "card" "prose" "toc" "tag-btn"
+                                               "flex" "grid" "gap-" "p-" "m-" "space-" "rounded-" "border-" "shadow-"
+                                               "w-" "h-" "min-" "max-" "hidden" "block" "sticky" "z-"
+                                               "font-" "leading-" "tracking-" "uppercase" "line-clamp-"
+                                               "text-xs" "text-sm" "text-base" "text-lg" "text-xl" "text-2xl" "text-3xl"
+                                               "hover:" "focus:" "group-hover:" "sm:" "md:" "lg:" "xl:" "2xl:"
+                                               "transition-" "duration-" "ease-" "cursor-" "disabled:" "opacity-" "animate-"
+                                               "overflow-" "container" "mx-auto" "px-" "py-" "inline-flex" "items-center" "justify-center"
+                                               "sr-only" "shrink-0" "flex-1" "flex-col" "flex-"]
+                                              :disallowed-patterns
+                                              ["[" "text-blue-" "bg-red-" "text-red-" "bg-blue-" "text-green-" "bg-green-"]
+                                              :prefer
+                                              {"border-gray-200" "border-border-default"
+                                               "border-gray-300" "border-border-default"
+                                               "divide-gray-200" "divide-border-default"
+                                               "divide-gray-300" "divide-border-default"}}}}}

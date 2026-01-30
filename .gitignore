@@ -1,5 +1,8 @@
 .calva
-.clj-kondo
+.clj-kondo/.cache
+.clj-kondo/imports
+.clj-kondo/inline-configs
+.clj-kondo/.lock
 .cpcache
 .lsp
 .nrepl-port
