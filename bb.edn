@@ -1,3 +1,5 @@
-{:paths ["bb" "src"] 
- :tasks {tw {:doc "Watch Tailwind CSS"
-             :task (shell "npx @tailwindcss/cli -i ./resources/public/css/input.css -o ./resources/public/css/styles.css --watch")}}}
+{:paths ["bb" "src"]
+ :tasks {tw  {:doc  "Watch Tailwind CSS"
+              :task (shell "npx @tailwindcss/cli -i ./resources/public/css/input.css -o ./resources/public/css/styles.css --watch")}
+         css {:doc  "Build CSS once (for CI or before clojure -X:build)"
+              :task (shell "npx @tailwindcss/cli -i ./resources/public/css/input.css -o ./resources/public/css/styles.css")}}}

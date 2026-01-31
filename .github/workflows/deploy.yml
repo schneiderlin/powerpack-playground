@@ -26,6 +26,9 @@ jobs:
         uses: DeLaGuardo/setup-clojure@13.4
         with:
           cli: latest  # or specify a version like '1.11.1.1413'
+
+      - name: Build CSS
+        run: npx @tailwindcss/cli -i ./resources/public/css/input.css -o ./resources/public/css/styles.css
       
       - name: Build site
         run: |
