@@ -27,6 +27,9 @@ jobs:
         with:
           cli: latest  # or specify a version like '1.11.1.1413'
 
+      - name: Install npm dependencies
+        run: npm install
+
       - name: Build CSS
         run: npx @tailwindcss/cli -i ./resources/public/css/input.css -o ./resources/public/css/styles.css
       
