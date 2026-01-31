@@ -1,53 +1,113 @@
-# 如何用自定义 Linter 确保 Tailwind 样式符合设计系统
+# 本项目的 Tailwind 设计系统 Linter 实现
 
-## 1. 问题背景
+本文档说明**当前项目**如何落地《design-system-linter.md》里的方案：数据源、规则实现
 
-随着 AI 编码工具的普及，生成 UI 界面变得前所未有的高效。但这也带来了一个新的问题：**AI 生成的代码缺乏一致的样式规范**。
+---
 
-AI 一次生成一屏、一页没问题，但它不了解你的设计系统，也没法「全局一起设计」——context 分分钟爆掉。于是颜色、边距、字体散落在各处，一开始甚至没有复用，单页看还行，整体就不 consistent。更糟的是：如果你一开始写的是浅色主题，中途想加深色，会发现到处是硬编码的色值，改起来非常痛苦。
+## 1. 整体结构
 
-## 2. AI 生成代码的常见问题
+- **设计系统数据源**：`design-system/tokens.edn`，定义「允许 / 禁止 / 推荐替换」的 Tailwind 类。
+- **Lint 框架**：`src/powerblog/lint.clj`，提供规则注册、Hiccup 遍历、违规收集与报告。
+- **自定义规则**：`dev/lint_rules.clj`，包含设计 token 校验及其他规则，在开发环境加载并注册到 `powerblog.lint`。
 
-- **颜色**：设计系统只允许几种主色，AI 会混用 hex、Tailwind 色号、各种命名色，深浅色主题难以统一。
-- **间距**：`p-2`、`p-[12px]`、`m-4`、`m-6` 等随机出现，没有统一的 scale。
-- **字体**：`text-xl`、`text-[24px]`、`text-2xl` 混用，没有预设等级。
-- **其他**：阴影、圆角、边框、透明度也类似，各处取值不统一。
+---
 
-## 3. 为什么会出现这个问题
+## 2. 设计系统数据源：`design-system/tokens.edn`
 
-每次 LLM 调用都是**有随机性的、stateless 的**——除非把之前所有页面的数据一起塞进 context，而 context 大小不允许。所以它没法「记住」你上一屏用了什么颜色、什么间距，只能按当前 prompt 和训练数据再「创造」一遍。生成的页面越多，inconsistent 就越多。
+项目用一份 EDN 作为「允许清单」和「替换建议」的单一数据源，供 lint 规则读取。
 
-## 4. 解决方案：自定义 Linter
+### 2.1 结构说明
 
-核心思路很简单：**把你的设计系统变成一份"允许清单"，然后强制 AI 只能使用清单中的值**。
+| 键 | 含义 | 用途 |
+|----|------|------|
+| `allowed-prefixes` | 允许的类名或类名前缀列表 | 白名单：class 要么完全匹配某一项，要么以某一项为前缀，否则可报 warning |
+| `disallowed-patterns` | 禁止出现的子串/模式 | 黑名单：class 包含或以此开头则报 error（如 `[` 表示禁止任意值 `[...]`，以及 `text-blue-`、`bg-red-` 等） |
+| `prefer` | 推荐替换映射 | key 为当前类名，value 为推荐使用的类名；命中则报 warning 建议替换 |
 
-### 4.1 设计系统作为单一数据源
+### 2.2 当前配置要点
 
-把设计系统落成一份**允许清单**：颜色、间距、字体、阴影、圆角等每个维度只允许取哪些值。用配置文件或 design tokens 定义即可，格式不限（YAML、EDN、JSON 都行）。这份清单就是「真理源头」——所有代码（包括 AI 生成的）只能从这里取值。
+- **颜色**：只允许 `text-primary-`、`text-gray-`、`text-muted-`、`bg-surface-`、`bg-primary-` 等；禁止 `text-blue-`、`bg-red-`、`text-green-` 等，避免散落色值。
+- **布局/组件**：允许 `layout-*`、`hero-`、`heading-`、`section-`、`card-*`、`btn`、`prose`、`toc` 等语义化类。
+- **通用工具类**：允许 `flex`、`grid`、`gap-`、`p-`、`m-`、`rounded-`、`shadow-`、`w-`、`h-`、响应式前缀 `sm:`、`md:` 等。
+- **禁止**：`[` 表示不鼓励任意值写法；并显式禁止一批未纳入设计系统的颜色类。
+- **推荐替换**：例如 `border-gray-200` / `border-gray-300` → `border-border-default`，统一边框语义。
 
-### 4.2 验证逻辑
+规则实现只依赖这三个 key，不关心具体是 Tailwind 还是别的 utility 体系，只要在规则里按「类名字符串」来匹配即可。
 
-写一个校验工具：扫描代码里的样式/类名，和允许清单对照，不在清单里的就报错，并（可选）提示「应使用清单中的某某类值」。实现上可以是正则/AST 解析你用的 utility class 或内联样式，逻辑就是白名单匹配。
+---
 
-### 4.3 集成到工作流
+## 3. Lint 框架：`src/powerblog/lint.clj`
 
-这个工具可以集成到多个环节：
+Lint 负责「规则注册 + Hiccup 遍历 + 报告」。
 
-- **本地检查**：提交前运行，拦截违规代码
-- **CI 检查**：构建失败，强制修复
-- **AI Prompt**：把允许清单作为约束传给 AI（LLM 不一定按约束生成，仍需靠 linter 兜底）
-- **IDE 插件**：实时提示违规
+### 3.1 规则注册
 
-## 5. 实际效果
+- `register-rule! [name rule-fn]`：注册一条规则，`name` 为关键字，`rule-fn` 接收**节点 map**，返回 **violation map 或 nil**。
+- `get-rules`：当前已注册规则。
+- `clear-rules!`：清空规则（便于测试或重载）。
 
-### 5.1 AI 生成
+节点 map 形如：`{:tag :div :attrs {:class "..."} :children [...]}`。  
+Violation map 需包含 `:severity`（`:error` / `:warning`）和 `:message`，可选 `:element`、`:attributes` 等，由报告逻辑使用。
 
-AI 生成了一些代码，其中部分样式/类名不在允许清单中。
+### 3.2 Hiccup 解析与遍历
 
-### 5.2 Linter 拦截
+- 只处理**向量形式的 Hiccup 元素**（首元素为 keyword tag）。
+- `parse-element` 把 `[:tag attrs? & children]` 解析为 `{:tag :attrs :children}`。
+- `collect-violations` 对整棵 Hiccup 树递归：先对当前节点 `apply-rules-to-node`，再对子节点递归；子节点会做展开（如 layout 里多段 content 的 seq），保证所有元素都会被检查。
 
-Linter 报出违规位置，并建议改用允许清单中的对应取值（例如某颜色 → 用主色/辅色列表中的某一个，某间距 → 用 spacing scale 中的某一个）。
+### 3.3 执行与报告
 
-### 5.3 结果
+- `apply-rules-to-node`：对单个节点依次执行所有已注册规则，收集返回的 violation。
+- `run-lint [hiccup]`：对一棵 Hiccup 树执行 `collect-violations`，再 `report-violations` 把结果打印到控制台（错误数、警告数、每条违规的规则名、元素、属性、消息）。
 
-要么自动修复（替换为允许的值），要么标记为需要人工审查。随着时间的推移，AI 会"学习"到这些约束，生成更规范的代码。
+这样，任何能产出 Hiccup 的页面/组件（例如 powerblog 的 layout 与页面）都可以传入 `run-lint` 做一次校验。
+
+---
+
+## 4. 自定义规则：`dev/lint_rules.clj`
+
+自定义规则写在 `dev/lint_rules.clj`，通过 `powerblog.lint/register-rule!` 注册，**不会**被 powerpack 库加载，仅在本项目开发环境中生效。
+
+### 4.1 与设计系统相关的规则：`check-design-tokens`
+
+- **数据来源**：调用 `get-tokens` 读取 `design-system/tokens.edn`（优先当前目录，再 `user.dir`），每次执行都重新读文件，改 tokens 不用重启 REPL。
+- **逻辑**：
+  1. 从节点 `attrs` 里取出 `:class`，按空白拆成多个 class。
+  2. **disallowed**：若某个 class 包含或以其开头命中 `disallowed-patterns` 中任一项，生成 error。
+  3. **prefer**：若 class 在 `prefer` 的 key 中，生成 warning，提示应改为对应的 value。
+  4. **allowed-prefixes**：若配置了 `allowed-prefixes`，则 class 必须与某一项完全相等或以该项为前缀，否则生成 warning。
+- 多条违规会合并成一条 violation，message 用 `"; "` 拼接；只要有一条 error 则整体 severity 为 error，否则为 warning。
+
+### 4.2 其他示例规则（同文件）
+
+- **class 命名**：`check-class-naming`，要求 class 为 kebab-case（不含大写），否则 warning。
+- **无障碍**：`check-img-alt`，`<img>` 必须有 `alt`，否则 error。
+- **样式方式**：`check-inline-style`，存在内联 `style` 则 warning，建议用 class。
+
+通过 `register-example-rules!` 一次性注册以上四条规则（含 `check-design-tokens`）；在 dev 启动或 REPL 里调用一次即可。
+
+---
+
+## 5. 使用方式
+
+1. **加载规则**（在 REPL 或 dev 入口）：  
+   `(require '[lint-rules])` 后执行 `(lint-rules/register-example-rules!)`。
+2. **对某棵 Hiccup 跑 lint**：  
+   `(require '[powerblog.lint :as lint] '[powerblog.core :as core])`  
+   `(lint/run-lint core/!debug)`（或任意返回 Hiccup 的 var/函数）。
+3. **查看/清理规则**：  
+   `(lint/get-rules)`、`(lint/clear-rules!)`。
+
+CI 或提交前可以写脚本：加载项目 ns、注册规则、对主要 layout/页面调用 `run-lint`，根据返回的 violations 决定是否失败。
+
+---
+
+## 6. 小结
+
+| 层次 | 文件 | 作用 |
+|------|------|------|
+| 数据源 | `design-system/tokens.edn` | 定义 Tailwind 类的允许前缀、禁止模式、推荐替换 |
+| 框架 | `src/powerblog/lint.clj` | 规则注册、Hiccup 遍历、违规收集与控制台报告（项目自带，非 powerpack） |
+| 规则实现 | `dev/lint_rules.clj` | 自定义规则：设计 token 校验、class 命名、img alt、内联 style 等，并注册到 `powerblog.lint` |
+
+这样就把「设计系统 → 允许清单」和「校验逻辑 → 自定义规则」都放在本仓库内，不依赖 powerpack 提供 lint，后续要加新规则或改 tokens 只需改 `tokens.edn` 和 `lint_rules.clj`。
