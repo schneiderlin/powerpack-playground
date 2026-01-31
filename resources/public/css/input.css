@@ -216,7 +216,12 @@
      ========================================================================== */
   --layout-container-padding: 1rem;   /* 16px mobile */
   --layout-main-padding: 1rem;        /* 16px mobile */
-  --layout-section-gap: 2rem;         /* 32px mobile */
+  --layout-section-gap: 2rem;        /* 32px mobile */
+  --layout-nav-height: 3.5rem;       /* 56px h-14 */
+  --layout-sticky-offset: 6rem;       /* top offset for sticky sidebar */
+  --layout-content-max: 56rem;       /* max-w-4xl */
+  --layout-hero-avatar-size: 12rem;
+  --layout-hero-avatar-size-md: 16rem;
 
   /* ==========================================================================
      Surface / Semantic Background Tokens
@@ -274,9 +279,10 @@
    ============================================================================ */
 @media (min-width: 768px) {
   :root {
-    --layout-container-padding: 1.5rem;  /* 24px md */
+    --layout-container-padding: 1.5rem;
     --layout-main-padding: 1.5rem;
-    --layout-section-gap: 3rem;         /* 48px md */
+    --layout-section-gap: 3rem;
+    --layout-hero-avatar-size: var(--layout-hero-avatar-size-md);
   }
 }
 
@@ -500,6 +506,180 @@ body {
   .layout-nav-desktop-only {
     display: flex;
   }
+}
+
+/* ============================================================================
+   Semantic component classes (use tokens; keep markup consistent)
+   ============================================================================ */
+
+/* Nav bar: sticky strip with border */
+.layout-nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  background-color: var(--surface-elevated);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.layout-nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--layout-nav-height);
+}
+
+.layout-nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--duration-normal) ease;
+}
+
+.layout-nav-logo:hover .layout-nav-logo-text {
+  color: var(--primary-600);
+}
+
+/* Footer: push to bottom in flex layout */
+.layout-footer {
+  width: 100%;
+  margin-top: auto;
+  background-color: var(--surface-elevated);
+  border-top: 1px solid var(--border-default);
+}
+
+.layout-footer-inner {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Hero: decorative blob + avatar */
+.hero-decor {
+  position: relative;
+}
+
+.hero-decor-blur {
+  position: absolute;
+  inset: -1rem;
+  background: linear-gradient(to bottom right, var(--primary-100), var(--primary-200));
+  border-radius: 1.5rem;
+  opacity: 0.5;
+  filter: blur(1.5rem);
+}
+
+.hero-avatar {
+  position: relative;
+  width: var(--layout-hero-avatar-size);
+  height: var(--layout-hero-avatar-size);
+  background-color: var(--primary-600);
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-text {
+  width: 100%;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-text {
+    width: 60%;
+    text-align: left;
+  }
+}
+
+.hero-title-group {
+  margin-bottom: 1.5rem;
+}
+
+.hero-title-group > * + * {
+  margin-top: 0.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-actions {
+    justify-content: flex-start;
+  }
+}
+
+.heading-center {
+  text-align: center;
+}
+
+.section-block {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  margin-bottom: 0.5rem;
+}
+
+/* Card (blog post card) */
+.card-meta {
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-default);
+}
+
+.card:hover .card-title {
+  color: var(--primary-600);
+}
+
+.card-title {
+  transition: color var(--duration-normal) ease;
+}
+
+/* Blog post: content header + sidebar sticky */
+.layout-content-header {
+  max-width: var(--layout-content-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 3rem;
+}
+
+.layout-sidebar-sticky {
+  position: sticky;
+  top: var(--layout-sticky-offset);
+}
+
+.layout-main-content {
+  flex: 1 1 0%;
+  min-width: 0;
+  padding-top: 0.5rem;
+}
+
+/* Section labels and spacing (TOC, Backlinks, blog header) */
+.section-label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.section-heading-spacing {
+  margin-bottom: 1.5rem;
+}
+
+.section-meta-spacing {
+  margin-bottom: 2rem;
+}
+
+.text-muted-italic {
+  font-size: var(--text-sm);
+  color: var(--gray-400);
+  font-style: italic;
 }
 
 /* ============================================================================

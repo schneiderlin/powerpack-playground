@@ -59,11 +59,11 @@
 
 (defn blog-post-card [post]
   [:a {:href (:page/uri post)
-       :class "card card-hoverable block post group"
+       :class "card card-hoverable block post"
        :data-tags (clojure.string/join "," (:blog-post/tags post))}
    [:div {:class "p-6 space-y-4"}
     ;; Title
-    [:h3 {:class "text-lg font-semibold text-gray-900 leading-tight group-hover:text-primary-600 transition-colors duration-200"}
+    [:h3 {:class "card-title text-lg font-semibold text-gray-900 leading-tight"}
      (:page/title post)]
     ;; Tags
     [:div {:class "flex flex-wrap gap-2"}
@@ -74,7 +74,7 @@
     [:p {:class "text-sm text-gray-600 leading-relaxed line-clamp-3"}
      (:page/description post "")]
     ;; Date
-    [:div {:class "flex items-center gap-2 text-xs text-gray-400 pt-2 border-t border-gray-100"}
+    [:div {:class "card-meta flex items-center gap-2 text-xs text-gray-400"}
      [:svg {:class "w-4 h-4" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "2"}
       [:path {:d "M8 2v4"}]
       [:path {:d "M16 2v4"}]
@@ -83,11 +83,11 @@
      [:span (:page/date post "")]]]])
 
 (defn tag-filter [all-tags]
-  [:div {:class "mb-8"}
-   [:h3 {:class "text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4"} "Filter by tags"]
+  [:div {:class "section-block"}
+   [:h3 {:class "section-label"} "Filter by tags"]
    [:div {:class "flex flex-wrap gap-2" :id "tag-filter"}
     (for [tag all-tags]
-      [:button {:class "tag-btn px-3 py-1.5 text-sm font-medium rounded-full border border-gray-200 text-gray-600 bg-surface-elevated hover:border-primary-300 hover:text-primary-600 hover:bg-primary-50 transition-all duration-200"
+      [:button {:class "tag-btn px-3 py-1.5 text-sm font-medium rounded-full border border-border-default text-gray-600 bg-surface-elevated hover:border-primary-300 hover:text-primary-600 hover:bg-primary-50 transition-all duration-200"
                 :data-tag (name tag)}
        (name tag)])]])
 
@@ -216,19 +216,17 @@
      [:div {:class "flex flex-col lg:flex-row items-center gap-8 lg:gap-12"}
       ;; Left: Avatar/Visual
       [:div {:class "w-full lg:w-2/5 flex justify-center lg:justify-start"}
-       [:div {:class "relative"}
-        ;; Decorative background
-        [:div {:class "absolute -inset-4 bg-gradient-to-br from-primary-100 to-primary-200 rounded-3xl opacity-50 blur-2xl"}]
-        ;; Avatar container
-        [:div {:class "relative w-48 h-48 md:w-64 md:h-64 bg-primary-600 rounded-3xl flex items-center justify-center shadow-lg"}
+       [:div {:class "hero-decor"}
+        [:div {:class "hero-decor-blur"}]
+        [:div {:class "hero-avatar"}
          [:svg {:class "w-32 h-32 md:w-40 md:h-40 text-white" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "1.5"}
           [:path {:d "M4 4h16v12H4z"}]
           [:path {:d "M8 20h8"}]
           [:path {:d "M12 16v4"}]]]]]
 
       ;; Right: Text content
-      [:div {:class "w-full lg:w-3/5 text-center lg:text-left"}
-       [:div {:class "space-y-2 mb-6"}
+      [:div {:class "hero-text lg:w-3/5"}
+       [:div {:class "hero-title-group"}
         [:h1 {:class "text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight"}
          "Software Engineer"]
         [:h1 {:class "text-3xl md:text-4xl lg:text-5xl font-bold text-primary-600 tracking-tight"}
@@ -237,7 +235,7 @@
          "World Explorer"]]
        [:p {:class "text-lg text-gray-600 max-w-xl mx-auto lg:mx-0 leading-relaxed"}
         "Welcome to my digital garden — a place where I share my thoughts on software engineering, artificial intelligence, and my journey exploring the world."]
-       [:div {:class "flex gap-4 mt-8 justify-center lg:justify-start"}
+       [:div {:class "hero-actions"}
         [:a {:href "#articles" :class "btn btn-primary"}
          "Read Articles"]
         [:a {:href "/about" :class "btn btn-secondary"}
@@ -245,8 +243,8 @@
 
     ;; Blog posts section
     [:section {:id "articles" :class "layout-container layout-section-spacing border-t border-border-default"}
-     [:div {:class "mb-8"}
-      [:h2 {:class "text-2xl font-bold text-gray-900 mb-2"} "Articles"]
+     [:div {:class "section-block"}
+      [:h2 {:class "text-2xl font-bold text-gray-900 section-title"} "Articles"]
       [:p {:class "text-gray-500"} "Explore my thoughts on technology, programming, and more."]]
      (tag-filter (get-all-tags (:app/db context)))
      [:div {:class "layout-grid-3" :id "posts-container"}
@@ -267,10 +265,10 @@
            if (selectedTags.has(tag)) {
              selectedTags.delete(tag);
              this.classList.remove('bg-primary-600', 'text-white', 'border-primary-600', 'hover:bg-primary-700');
-             this.classList.add('bg-surface-elevated', 'text-gray-600', 'border-gray-200', 'hover:border-primary-300', 'hover:text-primary-600', 'hover:bg-primary-50');
+             this.classList.add('bg-surface-elevated', 'text-gray-600', 'border-border-default', 'hover:border-primary-300', 'hover:text-primary-600', 'hover:bg-primary-50');
            } else {
              selectedTags.add(tag);
-             this.classList.remove('bg-surface-elevated', 'text-gray-600', 'border-gray-200', 'hover:border-primary-300', 'hover:text-primary-600', 'hover:bg-primary-50');
+             this.classList.remove('bg-surface-elevated', 'text-gray-600', 'border-border-default', 'hover:border-primary-300', 'hover:text-primary-600', 'hover:bg-primary-50');
              this.classList.add('bg-primary-600', 'text-white', 'border-primary-600', 'hover:bg-primary-700');
            }
 
@@ -301,19 +299,19 @@
 (defn blog-post-header [page]
   (list
    ;; Tags
-   [:div {:class "flex flex-wrap justify-center gap-2 mb-6"}
+   [:div {:class "flex flex-wrap justify-center gap-2 section-heading-spacing"}
     (for [tag (:blog-post/tags page)]
       [:span {:class "badge badge-neutral"}
        (name tag)])]
    ;; Title
-   [:h1 {:class "text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6 text-center"}
+   [:h1 {:class "text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight section-heading-spacing heading-center"}
     (:page/title page)]
    ;; Description
    (when (:page/description page)
-     [:p {:class "text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-6 text-center"}
+     [:p {:class "text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed section-heading-spacing heading-center"}
       (:page/description page)])
    ;; Date
-   [:div {:class "flex items-center justify-center gap-4 text-sm text-gray-500 mb-8"}
+   [:div {:class "flex items-center justify-center gap-4 text-sm text-gray-500 section-meta-spacing"}
     [:div {:class "flex items-center gap-2"}
      [:svg {:class "w-4 h-4" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "2"}
       [:path {:d "M8 2v4"}]
@@ -325,7 +323,7 @@
 (defn blog-post-toc [toc]
   (when (seq toc)
     [:nav {:class "toc"}
-     [:div {:class "text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4"}
+     [:div {:class "section-label"}
       "Table of Contents"]
      [:ul {:class "space-y-1 text-sm"}
       (for [heading toc]
@@ -333,21 +331,20 @@
 
 (defn blog-post-toc-column [toc]
   [:aside {:class "hidden lg:block w-48 flex-shrink-0"}
-   [:div {:class "sticky top-24"}
+   [:div {:class "layout-sidebar-sticky"}
     (blog-post-toc toc)]])
 
 (defn blog-post-content-column [body-html-str]
-  (println "here")
-  [:article {:class "flex-1 min-w-0 pt-2 badClassName"}
+  [:article {:class "layout-main-content"}
    [:div {:class "prose prose-lg max-w-none"}
     (hiccup/unescape body-html-str)]])
 
 (defn blog-post-backlinks-column []
   [:aside {:class "hidden xl:block w-48 flex-shrink-0"}
-   [:div {:class "sticky top-24"}
-    [:div {:class "text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4"}
+   [:div {:class "layout-sidebar-sticky"}
+    [:div {:class "section-label"}
      "Backlinks"]
-    [:div {:class "text-sm text-gray-400 italic"}
+    [:div {:class "text-muted-italic"}
      "Coming soon..."]]])
 
 (defn blog-post-three-columns [toc body-html-str]
@@ -358,7 +355,7 @@
 
 (defn blog-post-page-body [page body-html-str toc]
   [:div {:class "layout-container layout-section-spacing"}
-   [:header {:class "max-w-4xl mx-auto pb-12"}
+   [:header {:class "layout-content-header"}
     (blog-post-header page)]
    [:div {:class "mx-auto"}
     (blog-post-three-columns toc body-html-str)]])

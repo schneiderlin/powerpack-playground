@@ -1,18 +1,18 @@
 (ns dev
   (:require
    [powerblog.core :as blog]
-   [powerpack.dev :as dev]))
+   [powerpack.dev :as dev]
+   [lint-rules :as lint-rules]))
 
 (defmethod dev/configure! :default []
   blog/config)
+
+(lint-rules/register-example-rules!)
 
 (comment
   (dev/start)
   (dev/stop)
   (dev/reset)
-
-  (require '[dev.lint-rules :as lint-rules])
-  (lint-rules/register-example-rules!)
 
   (def app (dev/get-app))
   (require '[datomic.api :as d])

@@ -1,17 +1,17 @@
 (ns powerblog.components)
 
 (def navbar
-  [:nav {:class "bg-surface-elevated border-b border-border-default sticky top-0 z-50"}
+  [:nav {:class "layout-nav-bar"}
    [:div {:class "layout-container"}
-    [:div {:class "flex items-center justify-between h-14"}
+    [:div {:class "layout-nav-row"}
      ;; Logo section
-     [:a {:href "/" :class "flex items-center gap-3 group"}
+     [:a {:href "/" :class "layout-nav-logo"}
       [:div {:class "w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center"}
        [:svg {:class "w-5 h-5 text-white" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "2"}
         [:path {:d "M4 4h16v12H4z"}]
         [:path {:d "M8 20h8"}]
         [:path {:d "M12 16v4"}]]]
-      [:span {:class "text-lg font-semibold text-gray-900 group-hover:text-primary-600 transition-colors duration-200"}
+      [:span {:class "layout-nav-logo-text text-lg font-semibold text-gray-900 transition-colors duration-200"}
        "LinZiHao"]]
 
      ;; Desktop Navigation links
@@ -50,8 +50,8 @@
   });")
 
 (def footer
-  [:footer {:class "w-full bg-surface-elevated border-t border-border-default mt-auto"}
-   [:div {:class "layout-container py-8"}
+  [:footer {:class "layout-footer"}
+   [:div {:class "layout-container layout-footer-inner"}
     [:div {:class "flex flex-col items-center justify-center gap-6"}
      ;; Social links
      [:nav {:class "flex flex-wrap justify-center gap-6"}

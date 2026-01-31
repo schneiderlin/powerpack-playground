@@ -39,6 +39,16 @@
        (pos? (count form))
        (keyword? (first form))))
 
+(defn- expand-children
+  "Flatten children so that sequence children (e.g. layout content) are traversed.
+   Hiccup often has ([:parent ...] (child1 child2 ...)) — we recurse into each element in the seq."
+  [children]
+  (mapcat (fn [c]
+            (cond (element? c) [c]
+                  (seq? c)     (filter element? c)
+                  :else        []))
+          children))
+
 (defn- parse-element
   "Parse hiccup element [:tag attrs? & children] into {:tag :attrs :children}."
   [form]
@@ -85,7 +95,8 @@
           {:keys [children]} node
           violations (apply-rules-to-node node)
           enriched (map #(merge % (node-info node)) violations)
-          child-violations (mapcat collect-violations (filter element? children))]
+          expanded (expand-children children)
+          child-violations (mapcat collect-violations expanded)]
       (concat enriched child-violations))))
 
 (comment
