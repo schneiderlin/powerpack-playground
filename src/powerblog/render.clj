@@ -229,7 +229,7 @@
     [:p {:class "text-gray-600"} "Explore articles by topic."]]
    [:div {:class "layout-grid-3"}
      ;; AI Topic Card
-    [:a {:href "/ai" :class "card card-hoverable block"}
+    [:a {:href "/ai/" :class "card card-hoverable block"}
      [:div {:class "p-6 space-y-4"}
       [:div {:class "flex items-center gap-4"}
        [:div {:class "w-14 h-14 rounded-xl bg-primary-600 flex items-center justify-center shadow-lg"}
@@ -449,7 +449,7 @@
         db (:app/db context)
         result (or
                 (case uri
-                  "/ai" (layout
+                  "/ai/" (layout
                          {:title "AI Articles"
                           :description "Articles about AI and machine learning"}
                          (ai-page/page db))
