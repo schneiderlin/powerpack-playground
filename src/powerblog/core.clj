@@ -48,7 +48,10 @@
    :powerpack/log-level :debug
    :powerpack/render-page #'render/render-page
    :powerpack/create-ingest-tx #'create-tx
+   :optimus/bundles {"app.css"
+                     {:public-dir "public"
+                      :paths ["/styles.css"]}}
    :optimus/assets [{:public-dir "public"
-                     :paths ["/favicon.svg" "/css/styles.css"]}]
+                     :paths ["/favicon.svg"]}]
    :optimus/options {:minify-js-assets? false
                      :minify-css-assets? false}})
