@@ -1,11 +1,11 @@
 :page/title "本项目的 Tailwind 设计系统 Linter 实现"
-:page/description "说明当前项目如何落地博客《如何用自定义 Linter 确保样式符合设计系统》里的方案：数据源、规则实现。"
+:page/description "说明当前项目如何落地设计系统 Linter 方案的数据源与规则实现。"
 :page/date "2025-01-31"
 :blog-post/tags [:tooling :design-system :tailwind :linter]
 :blog-post/author {:person/id :jan}
 :page/body
 
-本文档说明**当前项目**如何落地博客《如何用自定义 Linter 确保样式符合设计系统》里的方案：数据源、规则实现
+本文说明**当前项目**如何落地 [《如何用自定义 Linter 确保样式符合设计系统》](/blog-posts/design-system-linter/) 里的方案：数据源、规则实现。
 
 ---
 
