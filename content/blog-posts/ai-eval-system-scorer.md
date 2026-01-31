@@ -144,10 +144,16 @@ def score_compliance(generated_code):
 def score_typescript(code):
     result = subprocess.run(['tsc', '--noEmit', code], capture_output=True)
     errors = parse_tsc_errors(result.stdout)
-    return max(0, 1 - len(errors) / MAX_TOLERATED_ERRORS)
+    return max(0, 1 - len(errors) / MAX_TOLERATED_ERRORS))
 ```
 
 这比"让 LLM 评代码质量"要靠谱得多。
+
+但需要注意：**强类型语言的表达力是有限的**。很多实际约束无法用类型表达，或者需要做大量类型体操。在 AI 生成代码场景下，灵活的验证机制（如 Clojure 的 spec、Malli）可能比严格的静态类型更实用。
+
+关于这个思考的详细讨论，见 [strong-vs-dynamic-types-ai-codegen](./strong-vs-dynamic-types-ai-codegen.md)。
+
+在 Clojure 中，我们用 Malli + clj-kondo 做类似的类型导出。具体实现细节见 [malli-cljkondo-type-export](./malli-cljkondo-type-export.md)。
 
 ## 混合策略：什么时候用 LLM as Judge？
 
