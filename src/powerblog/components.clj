@@ -11,21 +11,21 @@
         [:path {:d "M4 4h16v12H4z"}]
         [:path {:d "M8 20h8"}]
         [:path {:d "M12 16v4"}]]]
-      [:span {:class "layout-nav-logo-text text-lg font-semibold text-gray-900 transition-colors duration-200"}
+      [:span {:class "layout-nav-logo-text text-lg font-medium tracking-tight"}
        "LinZiHao"]]
 
      ;; Desktop Navigation links
      [:div {:class "hidden md:flex items-center gap-1"}
       [:a {:href "/"
-           :class "px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-colors duration-200"}
+           :class "px-3 py-2 text-base text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-all duration-300"}
        "Home"]
       [:a {:href "/about"
-           :class "px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-colors duration-200"}
+           :class "px-3 py-2 text-base text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-all duration-300"}
        "About"]]
 
      ;; Mobile menu button
      [:button {:type "button"
-               :class "md:hidden p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors duration-200"
+               :class "md:hidden p-2 text-gray-600 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-all duration-300"
                :aria-controls "navbar-default"
                :aria-expanded "false"
                :id "mobile-menu-button"}
@@ -38,9 +38,9 @@
     ;; Mobile Navigation menu
     [:div {:class "hidden md:hidden border-t border-border-default py-2" :id "navbar-default"}
      [:div {:class "flex flex-col gap-1"}
-      [:a {:href "/" :class "px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-colors duration-200"}
+      [:a {:href "/" :class "px-3 py-2 text-base text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-all duration-300"}
        "Home"]
-      [:a {:href "/about" :class "px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-colors duration-200"}
+      [:a {:href "/about" :class "px-3 py-2 text-base text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-all duration-300"}
        "About"]]]]])
 
 (def navbar-script
@@ -52,29 +52,29 @@
 (def footer
   [:footer {:class "layout-footer"}
    [:div {:class "layout-container layout-footer-inner"}
-    [:div {:class "flex flex-col items-center justify-center gap-6"}
+    [:div {:class "flex flex-col items-center justify-center gap-8"}
      ;; Social links
-     [:nav {:class "flex flex-wrap justify-center gap-6"}
+     [:nav {:class "flex flex-wrap justify-center gap-8"}
       [:a {:href "https://www.linkedin.com/in/zihao-lin-8b8067326/"
            :target "_blank" :rel "noopener noreferrer"
-           :class "text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"}
+           :class "text-base text-gray-600 hover:text-primary-600 transition-colors duration-300"}
        "LinkedIn"]
       [:a {:href "https://x.com/fTJSaF2VnI11762"
            :target "_blank" :rel "noopener noreferrer"
-           :class "text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"}
+           :class "text-base text-gray-600 hover:text-primary-600 transition-colors duration-300"}
        "X (Twitter)"]
       [:a {:href "https://space.bilibili.com/375039815"
            :target "_blank" :rel "noopener noreferrer"
-           :class "text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"}
+           :class "text-base text-gray-600 hover:text-primary-600 transition-colors duration-300"}
        "Bilibili"]
       [:a {:href "https://www.zhihu.com/people/lin-zi-hao-8-89"
            :target "_blank" :rel "noopener noreferrer"
-           :class "text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"}
+           :class "text-base text-gray-600 hover:text-primary-600 transition-colors duration-300"}
        "Zhihu"]
       [:a {:href "https://github.com/schneiderlin"
            :target "_blank" :rel "noopener noreferrer"
-           :class "text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"}
+           :class "text-base text-gray-600 hover:text-primary-600 transition-colors duration-300"}
        "GitHub"]]
      ;; Copyright
-     [:p {:class "text-sm text-gray-400"}
+     [:p {:class "text-base text-gray-600"}
       (str "© " (.getYear (java.time.LocalDate/now)) " LinZiHao. All rights reserved.")]]]])

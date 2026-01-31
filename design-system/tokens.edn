@@ -1,21 +1,77 @@
-{:allowed-prefixes    ["text-primary-" "text-gray-" "text-white" "text-black" "text-muted-"
-                       "text-success-" "text-error-" "text-warning-" "text-info-"
-                       "bg-surface-" "bg-primary-" "bg-gray-" "bg-success-" "bg-warning-" "bg-error-" "bg-info-" "bg-white"
-                       "border-border-default" "border-primary-" "border-gray-" "border-b-" "border-t-" "border-l-" "border-r-"
-                       "divide-border-default" "divide-gray-"
+{;; Wabi-Sabi Design System Tokens
+ ;; Philosophy: Embrace imperfection, asymmetry, and natural irregularity
+ 
+ ;; Allowed class prefixes
+ :allowed-prefixes    [;; Typography
+                       "text-xs" "text-sm" "text-base" "text-lg" "text-xl" "text-2xl" "text-3xl" "text-4xl" "text-5xl" "text-6xl"
+                       "leading-" "tracking-" "font-" "uppercase" "line-clamp-" "italic"
+                       "text-primary-" "text-gray-" "text-white" "text-black"
+                       "text-moss-" "text-indigo-" "text-wood-"
+                       
+                       ;; Backgrounds - Wabi-Sabi palette
+                       "bg-primary-" "bg-moss-" "bg-indigo-" "bg-wood-"
+                       "bg-surface-" "bg-gray-" "bg-white"
+                       
+                       ;; Borders - organic feel
+                       "border-border-default" "border-primary-" "border-moss-" "border-gray-"
+                       "border-b-" "border-t-" "border-l-" "border-r-"
+                       "divide-border-default" "divide-moss-"
+                       
+                       ;; Layout - semantic
                        "layout-" "layout-sidebar" "layout-grid-" "layout-nav-" "layout-main"
                        "hero-" "heading-" "section-" "card-" "card-title" "card-meta"
+                       
+                       ;; Components
                        "btn" "badge" "card" "prose" "toc" "tag-btn" "post"
+                       
+                       ;; Utilities - flex/grid
                        "flex" "grid" "gap-" "p-" "m-" "space-" "rounded-" "border" "border-" "shadow-"
-                       "w-" "h-" "min-" "max-" "hidden" "block" "sticky" "z-"
-                       "font-" "leading-" "tracking-" "uppercase" "line-clamp-"
-                       "text-xs" "text-sm" "text-base" "text-lg" "text-xl" "text-2xl" "text-3xl"
-                       "hover:" "focus:" "sm:" "md:" "lg:" "xl:" "2xl:"
-                       "transition-" "duration-" "ease-" "cursor-" "disabled:" "opacity-" "animate-"
+                       "w-" "h-" "min-" "max-" "hidden" "block" "sticky" "z-" "mt-" "mb-" "ml-" "mr-" "mx-" "my-"
+                       
+                       ;; Interactive states
+                       "hover:" "focus:" "active:" "disabled:"
+                       
+                       ;; Responsive
+                       "sm:" "md:" "lg:" "xl:" "2xl:"
+                       
+                       ;; Transitions - slow, deliberate
+                       "transition-" "duration-" "ease-" "cursor-" "opacity-" "animate-"
+                       
+                       ;; Layout utilities
                        "overflow-" "container" "mx-auto" "px-" "py-" "inline-flex" "items-center" "justify-center"
-                       "sr-only" "shrink-0" "flex-1" "flex-col" "flex-"]
- :disallowed-patterns ["[" "text-blue-" "bg-red-" "text-red-" "bg-blue-" "text-green-" "bg-green-"]
+                       "sr-only" "shrink-0" "flex-1" "flex-col" "flex-"
+                       ]
+ 
+ ;; Disallowed patterns - no arbitrary values, no harsh colors
+ :disallowed-patterns ["["
+                       ;; No harsh primary colors
+                       "text-blue-" "bg-blue-"
+                       "text-red-" "bg-red-"
+                       "text-green-" "bg-green-"
+                       "text-purple-" "bg-purple-"
+                       "text-pink-" "bg-pink-"
+                       "text-yellow-" "bg-yellow-"
+                       "text-orange-" "bg-orange-"
+                       ;; No neon or bright colors
+                       "text-cyan-" "bg-cyan-"
+                       "text-teal-" "bg-teal-"
+                       "text-lime-" "bg-lime-"
+                       "text-amber-" "bg-amber-"
+                       "text-emerald-" "bg-emerald-"
+                       "text-violet-" "bg-violet-"
+                       "text-fuchsia-" "bg-fuchsia-"
+                       "text-rose-" "bg-rose-"
+                       "text-sky-" "bg-sky-"
+                       ;; No arbitrary values
+                       "bg-[" "text-[" "p-[" "m-[" "w-[" "h-["
+                       "rounded-[" "border-[" "shadow-[" "gap-["
+                       ]
+ 
+ ;; Prefer - semantic replacements
  :prefer              {"border-gray-200" "border-border-default"
                        "border-gray-300" "border-border-default"
                        "divide-gray-200" "divide-border-default"
-                       "divide-gray-300" "divide-border-default"}}
+                       "divide-gray-300" "divide-border-default"
+                       ;; Discourage non-semantic colors
+                       "text-gray-500" "text-gray-600"
+                       "bg-gray-100" "bg-surface-elevated"}}

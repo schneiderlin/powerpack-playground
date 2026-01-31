@@ -6,7 +6,8 @@
 
 ## 1. 整体结构
 
-- **设计系统数据源**：`design-system/tokens.edn`，定义「允许 / 禁止 / 推荐替换」的 Tailwind 类。
+- **设计系统数据源**：`design-system/tokens.edn`，定义「允许 / 禁止 / 推荐替换」的 Tailwind 类（供 Linter 使用）。
+- **实际 design token**：在 `resources/public/css/input.css` 里，以 CSS 变量 / Tailwind `@theme` 等形式定义，是最终生效的样式与主题值。`style.css` 是根据 `input.css` 自动生成的构建产物（如经 Tailwind 编译），页面引用的是 `style.css`。
 - **Lint 框架**：`src/powerblog/lint.clj`，提供规则注册、Hiccup 遍历、违规收集与报告。
 - **自定义规则**：`dev/lint_rules.clj`，包含设计 token 校验及其他规则，在开发环境加载并注册到 `powerblog.lint`。
 
@@ -14,7 +15,8 @@
 
 ## 2. 设计系统数据源：`design-system/tokens.edn`
 
-项目用一份 EDN 作为「允许清单」和「替换建议」的单一数据源，供 lint 规则读取。
+项目用一份 EDN 作为「允许清单」和「替换建议」的单一数据源，供 lint 规则读取。  
+**注意**：这里只定义 Linter 的规则数据；真正生效的 design token（颜色、间距、字体等）在 **`resources/public/css/input.css`** 中定义（CSS 变量或 Tailwind 配置），编辑主题或新增 token 时应改 `input.css`，与 `tokens.edn` 的允许/禁止/推荐列表保持一致。`style.css` 由 `input.css` 经构建（如 Tailwind）自动生成，页面实际引用的是 `style.css`，不要直接改 `style.css`。
 
 ### 2.1 结构说明
 
@@ -106,7 +108,8 @@ CI 或提交前可以写脚本：加载项目 ns、注册规则、对主要 layo
 
 | 层次 | 文件 | 作用 |
 |------|------|------|
-| 数据源 | `design-system/tokens.edn` | 定义 Tailwind 类的允许前缀、禁止模式、推荐替换 |
+| 数据源（Linter） | `design-system/tokens.edn` | 定义 Tailwind 类的允许前缀、禁止模式、推荐替换 |
+| 实际 token（样式） | `resources/public/css/input.css` | 定义真正生效的 design token（CSS 变量 / Tailwind theme）；`style.css` 由其自动生成，页面引用 `style.css` |
 | 框架 | `src/powerblog/lint.clj` | 规则注册、Hiccup 遍历、违规收集与控制台报告（项目自带，非 powerpack） |
 | 规则实现 | `dev/lint_rules.clj` | 自定义规则：设计 token 校验、class 命名、img alt、内联 style 等，并注册到 `powerblog.lint` |
 
