@@ -226,7 +226,7 @@
    [:div {:class "section-block"}
     [:h2 {:class "text-2xl font-bold text-gray-900 section-title"} "Articles"]
     [:p {:class "text-gray-600"} "Explore my thoughts on technology, programming, and more."]]
-   (tag-filter (get-all-tags db))
+   #_(tag-filter (get-all-tags db))
    [:div {:class "layout-grid-3" :id "posts-container"}
     (for [blog-post (get-blog-posts db)]
       (blog-post-card blog-post))]])
@@ -275,7 +275,7 @@
       [:div {:id "progress-bar"}]
       (frontpage-hero-section)
       (frontpage-blog-posts-section db)
-      [:script frontpage-tag-filter-script]])))
+      #_[:script frontpage-tag-filter-script]])))
 
 ;;; ---------------------------------------------------------------------------
 ;;; Article page
