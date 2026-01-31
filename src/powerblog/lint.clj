@@ -100,7 +100,8 @@
       (concat enriched child-violations))))
 
 (comment
-  (parse-element core/!debug)
+  (require '[powerblog.render :as render])
+  (parse-element render/!debug)
   :rcf)
 
 ;; ============================================================================
@@ -154,7 +155,7 @@
     violations))
 
 (comment
-  (require '[powerblog.core :as core])
-  core/!debug
+  (require '[powerblog.render :as render])
+  render/!debug
   :rcf)
 
