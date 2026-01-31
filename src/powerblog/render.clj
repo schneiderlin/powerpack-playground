@@ -106,7 +106,7 @@
    [:link {:rel "icon" :type "image/svg+xml" :href "/favicon.svg"}]
    ;; Google Fonts (in HTML to avoid Optimus inline-CSS blocking external URLs)
    [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500;600;700&display=swap"}]
-   [:link {:rel "stylesheet" :href "/css/styles.css"}]
+   [:link {:rel "stylesheet" :href "/styles.css"}]
    [:style "
       #progress-bar {
         --progress: 0;

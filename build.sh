@@ -17,7 +17,7 @@ fi
 
 # Build CSS (input.css -> styles.css in resources/public/css)
 echo "Building CSS..."
-npx @tailwindcss/cli -i ./resources/public/css/input.css -o ./resources/public/css/styles.css
+npx @tailwindcss/cli -i ./resources/public/input.css -o ./resources/public/styles.css
 
 # Run the static site build
 echo "Building static site..."

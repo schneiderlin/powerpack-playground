@@ -11,7 +11,7 @@ target
 node_modules
 
 # tailwind output
-resources/public/css/styles.css
+resources/public/styles.css
 
 # opencode
 .opencode

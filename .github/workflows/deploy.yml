@@ -31,7 +31,7 @@ jobs:
         run: npm install
 
       - name: Build CSS
-        run: npx @tailwindcss/cli -i ./resources/public/css/input.css -o ./resources/public/css/styles.css
+        run: npx @tailwindcss/cli -i ./resources/public/input.css -o ./resources/public/styles.css
       
       - name: Build site
         run: |
