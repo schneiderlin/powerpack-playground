@@ -4,5 +4,9 @@
 
 (defn ^:export export! [& args]
   (-> blog/config
-      (assoc :site/base-url "https://schneiderlin.github.io")
+      (assoc :site/base-url 
+             (or (System/getenv "SITE_BASE_URL")
+                 (when-let [vercel-url (System/getenv "VERCEL_URL")]
+                   (str "https://" vercel-url))
+                 "https://schneiderlin.github.io"))
       export/export!))
