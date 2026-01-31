@@ -218,7 +218,7 @@
      [:div {:class "hero-actions"}
       [:a {:href "#articles" :class "btn btn-primary"}
        "Read Articles"]
-      [:a {:href "/about" :class "btn btn-secondary"}
+      [:a {:href "/about/" :class "btn btn-secondary"}
        "About Me"]]]]])
 
 (defn frontpage-blog-posts-section [db]

@@ -13,7 +13,7 @@ import Reagent from "@/components/Reagent.astro";
 
 How interactive can we make this website? Let's explore the possibilities!
 
-I've built this blog using Astro, as detailed in my [blog setup guide](/blog/zh/astro_blog). 
+I've built this blog using Astro, as detailed in my [blog setup guide](/blog-posts/astro-blog/). 
 The content is written in Markdown or MDX, which Astro then renders. MDX allows me to incorporate HTML and React components directly into my content, 
 opening up a world of interactive possibilities.
 
