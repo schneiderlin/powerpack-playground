@@ -5,7 +5,8 @@
    [powerpack.hiccup :as hiccup]
    [powerpack.markdown :as md]
    [powerblog.components :as components]
-   [powerblog.lint :as lint]))
+   [powerblog.lint :as lint]
+   [powerblog.static.ai-page :as ai-page]))
 
 ;;; ---------------------------------------------------------------------------
 ;;; Data / query (used only by render)
@@ -221,6 +222,104 @@
       [:a {:href "/about/" :class "btn btn-secondary"}
        "About Me"]]]]])
 
+(defn frontpage-topic-section [db]
+  [:section {:class "layout-container layout-section-spacing border-t border-border-default"}
+   [:div {:class "section-block"}
+    [:h2 {:class "text-2xl font-bold text-gray-900 section-title"} "Topics"]
+    [:p {:class "text-gray-600"} "Explore articles by topic."]]
+   [:div {:class "layout-grid-3"}
+    ;; AI Topic Card
+    [:a {:href "/ai" :class "card card-hoverable block"}
+     [:div {:class "p-6 space-y-4"}
+      [:div {:class "w-12 h-12 rounded-lg bg-primary-600 flex items-center justify-center"}
+       [:svg {:class "w-6 h-6 text-white" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "2"}
+        [:path {:d "M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"}]
+        [:path {:d "M8.5 8.5v.01"}]
+        [:path {:d "M16 15.5v.01"}]
+        [:path {:d "M12 12v.01"}]
+        [:path {:d "M11 17v.01"}]
+        [:path {:d "M7 14v.01"}]]]
+      [:h3 {:class "card-title text-lg font-semibold text-gray-900 leading-tight"}
+       "AI & Machine Learning"]
+      [:p {:class "text-sm text-gray-600 leading-relaxed line-clamp-3"}
+       "Articles about AI systems, LLMs, evaluation frameworks, and artificial intelligence applications."]
+      [:div {:class "card-meta flex items-center gap-2 text-xs text-gray-600"}
+       [:span (str (count (get-posts-by-tag db :AI)) " articles")]]]]
+
+    ;; Clojure Topic Card
+    [:a {:href "/" :class "card card-hoverable block"}
+     [:div {:class "p-6 space-y-4"}
+      [:div {:class "w-12 h-12 rounded-lg bg-moss-500 flex items-center justify-center"}
+       [:svg {:class "w-6 h-6 text-white" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "2"}
+        [:path {:d "M4 4h16v12H4z"}]
+        [:path {:d "M8 20h8"}]
+        [:path {:d "M12 16v4"}]]]
+      [:h3 {:class "card-title text-lg font-semibold text-gray-900 leading-tight"}
+       "Clojure"]
+      [:p {:class "text-sm text-gray-600 leading-relaxed line-clamp-3"}
+       "Functional programming with Clojure, including language design, tools, and best practices."]
+      [:div {:class "card-meta flex items-center gap-2 text-xs text-gray-600"}
+       [:span (str (count (get-posts-by-tag db :clojure)) " articles")]]]]
+
+    ;; Distributed Systems Topic Card
+    [:a {:href "/" :class "card card-hoverable block"}
+     [:div {:class "p-6 space-y-4"}
+      [:div {:class "w-12 h-12 rounded-lg bg-wood-600 flex items-center justify-center"}
+       [:svg {:class "w-6 h-6 text-white" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "2"}
+        [:path {:d "M3 15a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4"}]
+        [:path {:d "M12 3v12"}]
+        [:path {:d "M8 7l4-4 4 4"}]
+        [:path {:d "M12 21v-6"}]]]
+      [:h3 {:class "card-title text-lg font-semibold text-gray-900 leading-tight"}
+       "Distributed Systems"]
+      [:p {:class "text-sm text-gray-600 leading-relaxed line-clamp-3"}
+       "Distributed systems, databases, message queues, and system design patterns."]
+      [:div {:class "card-meta flex items-center gap-2 text-xs text-gray-600"}
+       [:span (str (count (get-posts-by-tag db :distributed-system)) " articles")]]]]
+
+    ;; Functional Programming Topic Card
+    [:a {:href "/" :class "card card-hoverable block"}
+     [:div {:class "p-6 space-y-4"}
+      [:div {:class "w-12 h-12 rounded-lg bg-indigo-600 flex items-center justify-center"}
+       [:svg {:class "w-6 h-6 text-white" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "2"}
+        [:path {:d "M4 7V4h3"}]
+        [:path {:d "M4 17v3h3"}]
+        [:path {:d "M20 7V4h-3"}]
+        [:path {:d "M20 17v3h-3"}]
+        [:path {:d "M9 9h6v6H9z"}]]]
+      [:h3 {:class "card-title text-lg font-semibold text-gray-900 leading-tight"}
+       "Functional Programming"]
+      [:p {:class "text-sm text-gray-600 leading-relaxed line-clamp-3"}
+       "Functional programming concepts, patterns, and implementations in Scala and other languages."]
+      [:div {:class "card-meta flex items-center gap-2 text-xs text-gray-600"}
+       [:span (str (count (get-posts-by-tag db :functional-programming)) " articles")]]]]
+
+    ;; Tools & Tooling Topic Card
+    [:a {:href "/" :class "card card-hoverable block"}
+     [:div {:class "p-6 space-y-4"}
+      [:div {:class "w-12 h-12 rounded-lg bg-primary-500 flex items-center justify-center"}
+       [:svg {:class "w-6 h-6 text-white" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "2"}
+        [:path {:d "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"}]]]
+      [:h3 {:class "card-title text-lg font-semibold text-gray-900 leading-tight"}
+       "Tools & Tooling"]
+      [:p {:class "text-sm text-gray-600 leading-relaxed line-clamp-3"}
+       "Development tools, linters, design systems, and productivity enhancements."]
+      [:div {:class "card-meta flex items-center gap-2 text-xs text-gray-600"}
+       [:span (str (count (get-posts-by-tag db :tooling)) " articles")]]]]
+
+    ;; Career & Life Topic Card
+    [:a {:href "/" :class "card card-hoverable block"}
+     [:div {:class "p-6 space-y-4"}
+      [:div {:class "w-12 h-12 rounded-lg bg-moss-600 flex items-center justify-center"}
+       [:svg {:class "w-6 h-6 text-white" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "2"}
+        [:path {:d "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"}]]]
+      [:h3 {:class "card-title text-lg font-semibold text-gray-900 leading-tight"}
+       "Career & Life"]
+      [:p {:class "text-sm text-gray-600 leading-relaxed line-clamp-3"}
+       "Thoughts on career growth, work-life balance, and personal development."]
+      [:div {:class "card-meta flex items-center gap-2 text-xs text-gray-600"}
+       [:span (str (count (get-posts-by-tag db :career)) " articles")]]]]]])
+
 (defn frontpage-blog-posts-section [db]
   [:section {:id "articles" :class "layout-container layout-section-spacing border-t border-border-default"}
    [:div {:class "section-block"}
@@ -274,6 +373,7 @@
      [:div
       [:div {:id "progress-bar"}]
       (frontpage-hero-section)
+      (frontpage-topic-section db)
       (frontpage-blog-posts-section db)
       #_[:script frontpage-tag-filter-script]])))
 
@@ -404,10 +504,19 @@
 (def !debug nil)
 
 (defn render-page [context page]
-  (let [result (case (:page/kind page)
-                 :page.kind/frontpage (render-frontpage context page)
-                 :page.kind/blog-post (render-blog-post context page)
-                 :page.kind/article (render-article context page))]
+  (let [{:keys [uri]} context
+        db (:app/db context)
+        result (or
+                (case uri
+                  "/ai" (layout
+                         {:title "AI Articles"
+                          :description "Articles about AI and machine learning"}
+                         (ai-page/page db))
+                  nil)
+                (case (:page/kind page)
+                  :page.kind/frontpage (render-frontpage context page)
+                  :page.kind/blog-post (render-blog-post context page)
+                  :page.kind/article (render-article context page)))]
     (alter-var-root #'!debug (constantly result))
     (lint/run-lint result)
     result))

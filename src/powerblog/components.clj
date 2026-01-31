@@ -14,11 +14,14 @@
       [:span {:class "layout-nav-logo-text text-lg font-medium tracking-tight"}
        "LinZiHao"]]
 
-     ;; Desktop Navigation links
+      ;; Desktop Navigation links
      [:div {:class "hidden md:flex items-center gap-1"}
       [:a {:href "/"
            :class "px-3 py-2 text-base text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-all duration-300"}
        "Home"]
+      [:a {:href "/ai"
+           :class "px-3 py-2 text-base text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-all duration-300"}
+       "AI"]
       [:a {:href "/about/"
            :class "px-3 py-2 text-base text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-all duration-300"}
        "About"]]
@@ -40,6 +43,8 @@
      [:div {:class "flex flex-col gap-1"}
       [:a {:href "/" :class "px-3 py-2 text-base text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-all duration-300"}
        "Home"]
+      [:a {:href "/ai" :class "px-3 py-2 text-base text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-all duration-300"}
+       "AI"]
       [:a {:href "/about/" :class "px-3 py-2 text-base text-gray-700 rounded-md hover:bg-gray-100 hover:text-primary-600 transition-all duration-300"}
        "About"]]]]])
 
