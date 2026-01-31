@@ -4,7 +4,8 @@
    [datomic.api :as d]
    [powerpack.hiccup :as hiccup]
    [powerpack.markdown :as md]
-   [powerblog.components :as components]))
+   [powerblog.components :as components]
+   [powerblog.lint :as lint]))
 
 (comment
   (require '[powerpack.dev :as dev])
@@ -336,7 +337,8 @@
     (blog-post-toc toc)]])
 
 (defn blog-post-content-column [body-html-str]
-  [:article {:class "flex-1 min-w-0 pt-2"}
+  (println "here")
+  [:article {:class "flex-1 min-w-0 pt-2 badClassName"}
    [:div {:class "prose prose-lg max-w-none"}
     (hiccup/unescape body-html-str)]])
 
@@ -403,10 +405,26 @@
      (blog-post-toc-script))))
 
 (defn render-page [context page]
-  (case (:page/kind page)
-    :page.kind/frontpage (render-frontpage context page)
-    :page.kind/blog-post (render-blog-post context page)
-    :page.kind/article (render-article context page)))
+  (let [result (case (:page/kind page)
+                 :page.kind/frontpage (render-frontpage context page)
+                 :page.kind/blog-post (render-blog-post context page)
+                 :page.kind/article (render-article context page))]
+    (def !debug result)
+    (lint/run-lint result)
+    result))
+
+(comment
+  !debug
+
+  (lint/element? !debug)
+  (lint/run-lint !debug)
+
+  (lint/run-lint [:html
+                  [:div {}
+                   [:div {:class "invalidName"}]
+                   [:span {:class "invalidName"}]]])
+
+  :rcf)
 
 (def config
   {:site/title "The Powerblog"
