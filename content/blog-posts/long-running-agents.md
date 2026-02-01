@@ -1,11 +1,9 @@
-```edn
 :page/title "长时间运行的 Agent：设计原则与理论框架"
 :page/description "探讨如何有意义地利用 AI subscription 多余额度，以及长时间运行 agent 的设计挑战"
 :page/date "2026-01-31"
 :blog-post/tags [:agent :AI :system-design]
 :blog-post/author {:person/id :jan}
 :page/body
-```
 
 ## 背景
 

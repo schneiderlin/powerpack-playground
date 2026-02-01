@@ -1,11 +1,9 @@
-```edn
 :page/title "Agent 自我反思：使用 Trace 分析改进"
 :page/description "介绍如何使用 opencode 插件记录 LLM interaction traces，并让 agent 分析这些 traces 以发现模式和改进自身"
 :page/date "2026-02-01"
 :blog-post/tags [:agent :AI :evaluation :trace]
 :blog-post/author {:person/id :jan}
 :page/body
-```
 
 ## 背景
 

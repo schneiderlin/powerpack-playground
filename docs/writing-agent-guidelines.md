@@ -20,14 +20,13 @@ content/blog-posts/ai-eval-system-scorer.md        # 文章
 
 每篇文章的开头必须包含以下 meta data（参考现有博客文章）：
 
-```edn
 :page/title "文章标题"
 :page/description "简短描述，1-2句话概括文章内容"
 :page/date "YYYY-MM-DD"
 :blog-post/tags [:tag1 :tag2 :tag3]
 :blog-post/author {:person/id :jan}
 :page/body
-```
+
 
 注意：
 - tags 使用 keyword 格式，如 `[:clojure :linter :malli]`
