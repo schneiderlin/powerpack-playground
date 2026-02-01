@@ -3,7 +3,7 @@
 ## Agent 设计问题
 - Meta 瓶颈问题：如何识别要解决的问题，如何让 Agent 从多个角度主动提问
   - 见 [agent-questioning](./agent-questioning.md)
-  
+
 - 找到旧问题和新知识之间的关联：有时经过一段时间后，人类在其他领域学习了新知识/解决方案，可以桥接到旧问题。如何找到这些关联？
   - 见 [agent-questioning](./agent-questioning.md)
 
@@ -12,12 +12,15 @@
 
 - Agent 自我分析产生"显然/无用"的洞察而非可行动、具体的改进；如何识别特定任务模式和工具缺口
   - 见 [agent-self-reflection-trace-analysis](./agent-self-reflection-trace-analysis.md)
-  
+
 - 验证和过拟合问题：如何验证改进建议是否有效？如何避免过拟合历史数据？如何处理新任务类型？
   - 见 [agent-self-reflection-trace-analysis](./agent-self-reflection-trace-analysis.md)
 
 - AI Agent 不主动使用外部记忆工具（Beads），忘记更新任务状态，失去外部状态收益
   - 见 [beads-agent-memory](./beads-agent-memory.md)
+
+- 代码分析工具限制：文件搜索（如 find-usages）效率低且不准确；需要 LSP 级别的语义分析来理解符号引用、类型信息和代码结构，而非简单的字符串匹配
+  - 无解决方案引用
 
 ## 长期运行 Agent
 - 如何有意义地消费 AI 订阅配额；设计有适当防护的 Agent 避免随时间漂移
@@ -27,10 +30,6 @@
   - 见 [long-running-agents](./long-running-agents.md)
 
 # 工具 & 基础设施
-
-## 热重载问题
-- 使用 powerpack 作为静态博客，但本地更改代码或内容文件不会触发页面重新加载。怀疑是 integrant repl 问题
-  - 见 [integrant](./integrant.md)
 
 ## 增量 UI
 - 缺少从模型到 IR 的增量更新（React 有 v-dom 到 DOM，但没有模型到 v-dom）。这更难，因为模型和 IR 是用户定义的，不像 DOM 那样标准

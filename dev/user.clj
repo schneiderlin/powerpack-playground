@@ -1,9 +1,12 @@
 (ns user
-  (:require dev))
+  (:require [clojure.java.io :as io]
+            [clojure.string :as str]
+            [dev])
+  (:import java.util.regex.Pattern))
 
-(let [a  1
-      bs 2]
-  (+ a bs))
+(defn find-usages
+  "Find all usages of a symbol in Clojure source files.
+  Usage: (find-usages 'my-ns/my-var) or (find-usages 'my-var)"
+  [sym]
+  (println "not implemented"))
 
-(def hiccup-test
-  [:hi {:class ["what"]}])

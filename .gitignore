@@ -15,3 +15,6 @@ resources/public/styles.css
 
 # opencode
 .opencode
+
+# debug logs
+.debug.log
