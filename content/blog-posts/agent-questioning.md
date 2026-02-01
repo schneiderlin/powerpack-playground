@@ -1,11 +1,9 @@
-```edn
 :page/title "Agent 如何帮助人类发现问题"
 :page/description "通过提问机制和 zettelkasten 知识组织，让 agent 帮助人类发现和解决问题"
 :page/date "2026-01-31"
 :blog-post/tags [:agent :AI :knowledge-management]
 :blog-post/author {:person/id :jan}
 :page/body
-```
 
 ## Meta 瓶颈
 

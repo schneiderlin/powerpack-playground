@@ -17,9 +17,9 @@ AI 模型厂商普遍提供 subscription 制度，通常每 5 小时刷新一次
 
 ### 1. 自我反思与优化
 
-记录 LLM 的所有 interaction traces，然后让 agent 进行评价，找出成功和失败的 pattern，总结结果并写入文档。更进一步，可以自动化这个过程，直接修改 agent 的 prompt 或 instruction。
+记录 LLM 的所有 interaction traces，然后让 agent 进行评价，找出成功和失败的 pattern，总结结果并写入文档。
 
-这种方法的核心是：让 agent 通过分析历史经验来改进自身。
+具体实现见 [agent-self-reflection-trace-analysis](./agent-self-reflection-trace-analysis.md)。
 
 ### 2. 代码与文档的一致性维护
 
