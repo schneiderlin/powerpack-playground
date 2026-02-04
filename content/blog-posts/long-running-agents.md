@@ -42,20 +42,16 @@ Agent 主导的长任务，在人类睡觉或工作时自主运行。这是长�
 自动评审代码库中的文章，用金字塔原理作为评分器生成改进建议。详细讨论见 [pyramid-principle-writing-eval](./pyramid-principle-writing-eval.md)。
 
 这个任务非常适合 sleep time compute：
-- 有明确的 guard rail（金字塔原理测试）
+- 有明确的 guardrail（金字塔原理测试）
 - 输出形式可控（只生成诊断报告，不直接修改原文）
 - 可以批量处理，充分利用夜间时间
 - 评审结果有实际价值
 
 ## 核心挑战
 
-### Guard rail 的必要性
+### Guardrail 的必要性
 
-长时间运行的 agent 任务，必须有明确的 guard rail。否则：
-- 随着时间推移、步骤增多，agent 越容易跑偏
-- 可能导致后面的一串 token 是白费的
-- 生成的结果没用
-- 占用人类 review 的精力
+详细讨论见 [Guardrail 的必要性](./agent-guardrail-necessity.md)。
 
 ### 输出形式的权衡
 
@@ -77,6 +73,6 @@ Agent 主导的长任务，在人类睡觉或工作时自主运行。这是长�
 
 - 这个工具解决的是理论框架中的哪部分问题？
 - 它是如何解决的？
-- 它在 guard rail 和输出形式上做了什么权衡？
+- 它在 guardrail 和输出形式上做了什么权衡？
 
 通过这个框架，可以更系统地理解不同 agent 工具的设计哲学和适用场景。
