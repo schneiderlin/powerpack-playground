@@ -1,7 +1,7 @@
 :page/title "写作 Eval：从金字塔原理到文档分类"
 :page/description "探讨如何用确定性评分器替代传统 LLM as Judge 进行写作质量评估，包括金字塔原理和 DivIO 文档分类框架"
 :page/date "2026-02-01"
-:blog-post/tags [:AI :eval :writing :documentation]
+:blog-post/tags [:AI :writing :documentation]
 :blog-post/author {:person/id :jan}
 :page/body
 

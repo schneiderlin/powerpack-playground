@@ -1,5 +1,5 @@
 :page/title incremental UI
-:blog-post/tags [:computation :UI]
+:blog-post/tags [:computation :ui]
 :blog-post/author {:person/id :jan}
 :page/body
 

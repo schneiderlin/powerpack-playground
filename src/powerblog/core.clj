@@ -1,7 +1,19 @@
 (ns powerblog.core
   (:require
+   [clojure.string :as str]
    [datomic.api :as d]
    [powerblog.render :as render]))
+
+;; 只有在这个 set 里的 tag 会被 ingest 进 DB，其余的会被过滤并打日志
+(def ^:dynamic *allowed-blog-tags*
+  #{:clojure :AI :agent :evaluation :trace :system-design
+    :decision-making :tools :knowledge-management :career :happiness
+    :writing :time-management :design :ui :tooling :design-system
+    :linter :type-system 
+    :rust :haskell :java :scala :javascript
+    :algorithm :distributed-system
+    :language :akka :networking :compiler
+    :astro :computation :nix :database :rocketmq :open-source :software-engineering :functional-programming :documentation})
 
 (comment
   (require '[powerpack.dev :as dev])
@@ -21,10 +33,24 @@
     (re-find #"\.md$" file-name)
     :page.kind/article))
 
+(defn filter-tags-to-allowed [tags allowed]
+  (when (seq tags)
+    (let [tags-vec (if (sequential? tags) tags [tags])
+          filtered (filterv allowed tags-vec)
+          invalid (remove allowed tags-vec)]
+      (when (seq invalid)
+        (binding [*out* *err*]
+          (println (str "[powerblog] 以下 tag 不在允许列表中，已忽略: "
+                       (str/join ", " (map name invalid))))))
+      filtered)))
+
 (defn create-tx [file-name txes]
-  (let [kind (get-page-kind file-name)]
+  (let [kind (get-page-kind file-name)
+        allowed *allowed-blog-tags*]
     (for [tx txes]
       (cond-> tx
+        (contains? tx :blog-post/tags)
+        (update :blog-post/tags #(vec (or (filter-tags-to-allowed % allowed) [])))
         (and (:page/uri tx) kind)
         (assoc :page/kind kind)))))
 

@@ -1,7 +1,7 @@
 :page/title "AI 时代的开源项目：从框架依赖到自主复制"
 :page/description "探讨 AI 辅助编程如何改变开发者对开源框架的依赖模式，以及对开源项目生态的长期影响"
 :page/date "2025-02-09"
-:blog-post/tags [:open-source :ai :software-engineering :frameworks]
+:blog-post/tags [:open-source :AI :software-engineering]
 :blog-post/author {:person/id :jan}
 :page/body
 

@@ -1,7 +1,7 @@
 :page/title "Agent 自主性：如何划分决策边界"
 :page/description "探讨 AI agent 的自主性 spectrum，讨论 agent 如何判断哪些决策应该自己做，哪些应该由用户来做"
 :page/date "2026-02-03"
-:blog-post/tags [:agent :AI :decision-making :autonomy]
+:blog-post/tags [:agent :AI :decision-making]
 :blog-post/author {:person/id :jan}
 :page/body
 

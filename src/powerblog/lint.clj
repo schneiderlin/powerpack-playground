@@ -137,8 +137,7 @@
 (defn report-violations
   "报告所有 violations 到控制台"
   [violations]
-  (if (empty? violations)
-    (println "✓ No attribute lint issues found")
+  (when-not (empty? violations)
     (let [error-count (count (filter #(= :error (:severity %)) violations))
           warning-count (count (filter #(= :warning (:severity %)) violations))]
       (println (str "\n🔍 Attribute Lint Results:"))

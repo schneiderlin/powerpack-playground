@@ -1,7 +1,7 @@
 :page/title "Strategies for Effortless and Impactful Writing"
 :page/description "Discover practical techniques to make writing easier and more effective, including leveraging AI tools, personal note-taking systems, and identity-based habit formation for a more productive writing process."
 :page/date "2024-09-06"
-:blog-post/tags [:blog, :writing]
+:blog-post/tags [:writing]
 :blog-post/author {:person/id :jan}
 :page/body
 

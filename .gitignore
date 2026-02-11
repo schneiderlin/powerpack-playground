@@ -18,3 +18,5 @@ resources/public/styles.css
 
 # debug logs
 .debug.log
+
+tmp/scott-young-blog/

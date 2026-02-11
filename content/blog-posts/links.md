@@ -1,7 +1,7 @@
 :page/title "Support My Writing Journey"
 :page/description "it's like contribution.md on github, but for writing"
 :page/date "2024-09-20"
-:blog-post/tags [:blog]
+:blog-post/tags []
 :blog-post/author {:person/id :jan}
 :page/body
 

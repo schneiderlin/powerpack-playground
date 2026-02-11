@@ -1,7 +1,7 @@
 :page/title "Clojure Malli + clj-kondo Type Export 实践"
 :page/description "给 Clojure 库添加类型导出，让依赖方获得 clj-kondo 静态类型检查。本文记录了使用 Malli schema 定义类型、导出给 clj-kondo 的完整流程，以及路径配置的陷阱和解决方案。"
 :page/date "2026-01-31"
-:blog-post/tags [:clojure :linter :malli :clj-kondo]
+:blog-post/tags [:clojure :linter]
 :blog-post/author {:person/id :jan}
 :page/body
 

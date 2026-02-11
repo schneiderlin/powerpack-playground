@@ -1,7 +1,7 @@
 :page/title "What Makes a Good Blog: Beyond Aesthetics and Technical Aspects"
 :page/description "The concept of digital gardening, ideal navigation structures, and content update challenges"
 :page/date "2024-09-05"
-:blog-post/tags [:blog]
+:blog-post/tags []
 :blog-post/author {:person/id :jan}
 :page/body
 
