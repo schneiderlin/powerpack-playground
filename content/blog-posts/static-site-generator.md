@@ -1,5 +1,6 @@
 :page/title static site generator
-:blog-post/tags [:clojure]
+:page/description "讨论在静态站点生成器中引入数据库环节的好处：代码复用、强大查询能力、类型安全、可扩展性和更佳的开发体验。"
+:blog-post/tags [:clojure :software-engineering]
 :blog-post/author {:person/id :jan}
 :page/body
 

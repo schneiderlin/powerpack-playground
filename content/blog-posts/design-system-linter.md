@@ -1,7 +1,7 @@
 :page/title "如何用自定义 Linter 确保样式符合设计系统"
 :page/description "用设计系统作为允许清单，通过自定义 Linter 约束 AI 生成代码的样式，保证颜色、间距、字体等符合规范。"
 :page/date "2025-01-31"
-:blog-post/tags [:tooling :design-system :linter]
+:blog-post/tags [:tooling :design-system :linter :software-engineering]
 :blog-post/author {:person/id :jan}
 :page/body
 

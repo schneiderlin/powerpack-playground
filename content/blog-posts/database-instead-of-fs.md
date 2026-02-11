@@ -1,5 +1,6 @@
 :page/title database instead of file system
-:blog-post/tags [:clojure]
+:page/description "延续 static site generator 的思路，讨论 render 基于数据库而非文件系统的优点：更好的查询能力、无需 ship db、数据由 ingest 生成故无同步问题，可类比 IDE 与 hledger 的架构。"
+:blog-post/tags [:clojure :software-engineering]
 :blog-post/author {:person/id :jan}
 :page/body
 

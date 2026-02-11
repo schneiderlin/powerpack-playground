@@ -1,5 +1,6 @@
 :page/title clojure as framework
-:blog-post/tags [:clojure]
+:page/description "表达力强的语言对框架的需求就少，Clojure 本身可作为框架，通过 interop 接入 JVM、ClojureScript 接入 JS/Node、libpython-clj 接入 Python 等多元生态。"
+:blog-post/tags [:clojure :software-engineering]
 :blog-post/author {:person/id :jan}
 :page/body
 

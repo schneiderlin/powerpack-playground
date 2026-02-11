@@ -13,7 +13,9 @@
     :rust :haskell :java :scala :javascript
     :algorithm :distributed-system
     :language :akka :networking :compiler
-    :astro :computation :nix :database :rocketmq :open-source :software-engineering :functional-programming :documentation})
+    :astro :computation :nix :database :rocketmq :open-source
+    :software-engineering ; 系统性工程思考类文章，非所有 IT 类都需打此 tag
+    :functional-programming :documentation})
 
 (comment
   (require '[powerpack.dev :as dev])

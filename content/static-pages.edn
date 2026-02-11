@@ -1,2 +1,4 @@
-{:page/uri "/ai/"
- :page/locale :zh-CN}
+[{:page/uri "/ai/"
+  :page/locale :zh-CN}
+ {:page/uri "/software-engineering/"
+  :page/locale :zh-CN}]

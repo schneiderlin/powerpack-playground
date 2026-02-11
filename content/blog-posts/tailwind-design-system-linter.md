@@ -1,7 +1,7 @@
 :page/title "本项目的 Tailwind 设计系统 Linter 实现"
 :page/description "说明当前项目如何落地设计系统 Linter 方案的数据源与规则实现。"
 :page/date "2025-01-31"
-:blog-post/tags [:tooling :design-system :linter]
+:blog-post/tags [:tooling :design-system :linter :software-engineering]
 :blog-post/author {:person/id :jan}
 :page/body
 

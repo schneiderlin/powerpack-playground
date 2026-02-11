@@ -1,7 +1,7 @@
 :page/title "Testing UI with Pure Functions and AI-Friendly Error Suggestions"
 :page/description "Testing UI by treating the view as a pure function (state → hiccup), with no browser; and designing test-helper error messages so AI agents can fix failing tests from concrete suggestions."
 :page/date "2026-02-04"
-:blog-post/tags [:clojure :AI]
+:blog-post/tags [:clojure :AI :software-engineering]
 :blog-post/author {:person/id :jan}
 :page/body
 

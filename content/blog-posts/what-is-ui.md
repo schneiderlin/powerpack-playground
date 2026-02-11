@@ -1,5 +1,6 @@
 :page/title 可复用的 UI 代码
-:blog-post/tags [:design :ui]
+:page/description "讨论如何通过引入 IR 中间表示层组织 UI 代码，实现业务逻辑可测试、渲染后端可替换、布局算法可复用，适用于 DOM、Mobile、游戏引擎等多个平台。"
+:blog-post/tags [:design :ui :software-engineering]
 :blog-post/author {:person/id :jan}
 :page/body
 

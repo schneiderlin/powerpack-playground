@@ -1,7 +1,7 @@
 :page/title "强类型 vs 动态类型：AI 生成代码的思考"
 :page/description "强类型语言的编译器能做检查，是否意味着 AI 生成代码更有优势？本文探讨了类型表达力、类型体操成本、编译期 vs 运行期验证，以及动态类型语言在 AI 生成场景下的灵活优势。"
 :page/date "2026-01-31"
-:blog-post/tags [:type-system :AI :clojure :rust :haskell]
+:blog-post/tags [:type-system :AI :clojure :rust :haskell :software-engineering]
 :blog-post/author {:person/id :jan}
 :page/body
 

@@ -6,7 +6,8 @@
    [powerpack.markdown :as md]
    [powerblog.components :as components]
    [powerblog.lint :as lint]
-   [powerblog.static.ai-page :as ai-page]))
+   [powerblog.static.ai-page :as ai-page]
+   [powerblog.static.software-engineering-page :as software-engineering-page]))
 
 ;;; ---------------------------------------------------------------------------
 ;;; Data / query (used only by render)
@@ -222,44 +223,75 @@
       [:a {:href "/about/" :class "btn btn-secondary"}
        "About Me"]]]]])
 
+(defn ai-topic-card [db]
+  [:a {:href "/ai/" :class "card card-hoverable block"}
+   [:div {:class "p-6 space-y-4"}
+    [:div {:class "flex items-center gap-4"}
+     [:div {:class "w-14 h-14 rounded-xl bg-primary-600 flex items-center justify-center shadow-lg"}
+      [:svg {:class "w-7 h-7 text-white" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "1.5"}
+       [:path {:d "M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"}]
+       [:path {:d "M8.5 8.5v.01"}]
+       [:path {:d "M16 15.5v.01"}]
+       [:path {:d "M12 12v.01"}]
+       [:path {:d "M11 17v.01"}]
+       [:path {:d "M7 14v.01"}]]]
+     [:span {:class "badge badge-primary text-xs"}
+      "Featured"]]
+    [:div {:class "space-y-2"}
+     [:h3 {:class "card-title text-xl font-semibold text-gray-900 leading-tight"}
+      "AI & Machine Learning"]
+     [:p {:class "text-sm text-gray-600 leading-relaxed"}
+      "Exploring the intersection of artificial intelligence and software engineering — from evaluation systems to type theory."]]
+    [:div {:class "flex items-center gap-4 mt-4"}
+     [:div {:class "card-meta flex items-center gap-2 text-xs text-gray-600"}
+      [:svg {:class "w-4 h-4" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "2"}
+       [:path {:d "M8 2v4"}]
+       [:path {:d "M16 2v4"}]
+       [:rect {:width "18" :height "18" :x "3" :y "4" :rx "2"}]
+       [:path {:d "M3 10h18"}]]
+      [:span (str (count (get-posts-by-tag db :AI)) " articles")]]
+     [:span {:class "text-sm font-medium text-primary-600 flex items-center gap-1"}
+      "Explore"
+      [:svg {:class "w-4 h-4" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "2"}
+       [:path {:d "M5 12h14"}]
+       [:path {:d "m12 5 7 7-7 7"}]]]]]])
+
+(defn software-engineering-topic-card [db]
+  [:a {:href "/software-engineering/" :class "card card-hoverable block"}
+   [:div {:class "p-6 space-y-4"}
+    [:div {:class "flex items-center gap-4"}
+     [:div {:class "w-14 h-14 rounded-xl bg-primary-600 flex items-center justify-center shadow-lg"}
+      [:svg {:class "w-7 h-7 text-white" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "1.5"}
+       [:path {:d "M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9l9-5.25m-9 5.25v-9l9-5.25"}]]]
+     [:span {:class "badge badge-primary text-xs"}
+      "Featured"]]
+    [:div {:class "space-y-2"}
+     [:h3 {:class "card-title text-xl font-semibold text-gray-900 leading-tight"}
+      "Software Engineering"]
+     [:p {:class "text-sm text-gray-600 leading-relaxed"}
+      "系统性工程思考 — 架构设计、工程实践与开发理念。"]]
+    [:div {:class "flex items-center gap-4 mt-4"}
+     [:div {:class "card-meta flex items-center gap-2 text-xs text-gray-600"}
+      [:svg {:class "w-4 h-4" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "2"}
+       [:path {:d "M8 2v4"}]
+       [:path {:d "M16 2v4"}]
+       [:rect {:width "18" :height "18" :x "3" :y "4" :rx "2"}]
+       [:path {:d "M3 10h18"}]]
+      [:span (str (count (get-posts-by-tag db :software-engineering)) " articles")]]
+     [:span {:class "text-sm font-medium text-primary-600 flex items-center gap-1"}
+      "Explore"
+      [:svg {:class "w-4 h-4" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "2"}
+       [:path {:d "M5 12h14"}]
+       [:path {:d "m12 5 7 7-7 7"}]]]]]])
+
 (defn frontpage-topic-section [db]
   [:section {:class "layout-container layout-section-spacing border-t border-border-default"}
    [:div {:class "section-block"}
     [:h2 {:class "text-2xl font-bold text-gray-900 section-title"} "Topics"]
     [:p {:class "text-gray-600"} "Explore articles by topic."]]
    [:div {:class "layout-grid-3"}
-     ;; AI Topic Card
-    [:a {:href "/ai/" :class "card card-hoverable block"}
-     [:div {:class "p-6 space-y-4"}
-      [:div {:class "flex items-center gap-4"}
-       [:div {:class "w-14 h-14 rounded-xl bg-primary-600 flex items-center justify-center shadow-lg"}
-        [:svg {:class "w-7 h-7 text-white" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "1.5"}
-         [:path {:d "M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"}]
-         [:path {:d "M8.5 8.5v.01"}]
-         [:path {:d "M16 15.5v.01"}]
-         [:path {:d "M12 12v.01"}]
-         [:path {:d "M11 17v.01"}]
-         [:path {:d "M7 14v.01"}]]]
-       [:span {:class "badge badge-primary text-xs"}
-        "Featured"]]
-      [:div {:class "space-y-2"}
-       [:h3 {:class "card-title text-xl font-semibold text-gray-900 leading-tight"}
-        "AI & Machine Learning"]
-       [:p {:class "text-sm text-gray-600 leading-relaxed"}
-        "Exploring the intersection of artificial intelligence and software engineering — from evaluation systems to type theory."]]
-      [:div {:class "flex items-center gap-4 mt-4"}
-       [:div {:class "card-meta flex items-center gap-2 text-xs text-gray-600"}
-        [:svg {:class "w-4 h-4" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "2"}
-         [:path {:d "M8 2v4"}]
-         [:path {:d "M16 2v4"}]
-         [:rect {:width "18" :height "18" :x "3" :y "4" :rx "2"}]
-         [:path {:d "M3 10h18"}]]
-        [:span (str (count (get-posts-by-tag db :AI)) " articles")]]
-       [:span {:class "text-sm font-medium text-primary-600 flex items-center gap-1"}
-        "Explore"
-        [:svg {:class "w-4 h-4" :viewBox "0 0 24 24" :fill "none" :stroke "currentColor" :stroke-width "2"}
-         [:path {:d "M5 12h14"}]
-         [:path {:d "m12 5 7 7-7 7"}]]]]]]]])
+    (ai-topic-card db)
+    (software-engineering-topic-card db)]])
 
 (defn frontpage-blog-posts-section [db]
   [:section {:id "articles" :class "layout-container layout-section-spacing border-t border-border-default"}
@@ -442,22 +474,41 @@
 ;;; Main entry
 ;;; ---------------------------------------------------------------------------
 
-(def !debug nil)
-
 (defn render-page [context page]
-  (let [{:keys [uri]} context
+  (let [uri (or (:uri context) (:page/uri page))
         db (:app/db context)
+        _ (println "uri" uri)
         result (or
-                (case uri
-                  "/ai/" (layout
-                         {:title "AI Articles"
-                          :description "Articles about AI and machine learning"}
-                         (ai-page/page db))
-                  nil)
+                (cond
+                  (#{"/ai/" "/ai"} uri)
+                  (layout
+                   {:title "AI Articles"
+                    :description "Articles about AI and machine learning"}
+                   (ai-page/page db))
+                  (#{"/software-engineering/" "/software-engineering"} uri)
+                  (layout
+                   {:title "Software Engineering"
+                    :description "系统性工程思考类文章"}
+                   (software-engineering-page/page db))
+                  :else nil)
                 (case (:page/kind page)
                   :page.kind/frontpage (render-frontpage context page)
                   :page.kind/blog-post (render-blog-post context page)
-                  :page.kind/article (render-article context page)))]
-    (alter-var-root #'!debug (constantly result))
+                  :page.kind/article (render-article context page)
+                  ;; Static pages from EDN (e.g. static-pages.edn) have no :page/kind
+                  nil (when-let [page-uri (:page/uri page)]
+                        (cond
+                          (#{"/ai/" "/ai"} page-uri)
+                          (layout
+                           {:title "AI Articles"
+                            :description "Articles about AI and machine learning"}
+                           (ai-page/page db))
+                          (#{"/software-engineering/" "/software-engineering"} page-uri)
+                          (layout
+                           {:title "Software Engineering"
+                            :description "系统性工程思考类文章"}
+                           (software-engineering-page/page db))
+                          :else nil))
+                  nil))]
     (lint/run-lint result)
     result))
